@@ -20,12 +20,12 @@ body {
 
 header.site-header{
   width: 100%;
-  height: 64px;
-  position: relative; /* 🔹 back-link 절대 위치 기준 */
+  height: 80px;
+  position: relative;
   border-bottom: 1px solid var(--line);
   display: flex;
   align-items: center;
-  justify-content: center; /* 🔹 h1을 화면 중앙 정렬 */
+  justify-content: center;
   overflow: hidden;
 }
 

@@ -6,6 +6,21 @@ body {
   color: #333;
 }
 
+header.site-header{
+  border-bottom: 1px solid #D1D5DB; 
+  height: 80px;        
+  display: flex;
+  align-items: center;            
+  justify-content: center;  
+  padding: 0 16px;     
+}
+
+.site-header h1{
+  font-size: 26px;
+  font-weight: 800;
+  color: #111827;
+}
+
 /* 전체 영역 가운데 정렬 */
 main {
   display: flex;
@@ -73,9 +88,17 @@ input:focus {
   transition: background-color 0.3s;
 }
 
-#login-btn:hover {
-  background-color: #7F6AEE; /* 활성 색상 */
+#login-btn:active{ transform: translateY(1px); }
+
+#login-btn:disabled{
+  background: #ACA0EB;
+  cursor: not-allowed;
+  filter: saturate(.9);
 }
+
+/* #login-btn:hover {
+  background-color: #7F6AEE;
+} */
 
 #signup-link {
   display: block;
