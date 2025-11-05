@@ -1,0 +1,203 @@
+:root{
+  --bg: #f4f4f4;
+  --ink: #111827;
+  --muted: #6B7280;
+  --line: #D1D5DB;
+  --panel: #FFFFFF;
+  --primary: #7F6AEE;
+  --primary-disabled: #ACA0EB;
+  --danger: #E74C3C;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Pretendard';
+}
+
+header.site-header{
+  width: 100%;
+  height: 64px;
+  position: relative; /* 🔹 back-link 절대 위치 기준 */
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 🔹 h1을 화면 중앙 정렬 */
+  overflow: hidden;
+}
+
+.topbar{ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.topbar h1{
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.back-link{
+  position: absolute;
+  left: clamp(48px, 8vw, 96px);
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 5px;
+  border: none;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1;
+}
+
+main{
+  min-height: calc(100vh - 80px);
+  padding: 32px 16px 48px;
+}
+.form-stack{
+  width: 520px;
+  max-width: 92vw;
+  margin: 0 auto;
+}
+.section-title{
+  text-align: center;
+  font-size: 26px;
+  font-weight: 800;
+  margin: 6px 0 18px;
+}
+
+.profile-box{
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.block-title{
+  margin: 0 0 6px;
+  font-weight: 700;
+}
+.helper-text{
+  margin-top: 6px;
+  min-height: 16px;
+  font-size: 12px;
+  color: var(--danger);
+}
+.helper-text::before{ content: '* '; }
+
+.avatar-upload {
+  width: 180px; height: 180px; border-radius: 50%;
+  background: #e5e7eb; display: grid; place-items: center;
+  font-size: 42px; color: #6b7280; user-select: none;
+  border: 1px solid #d1d5db;
+}
+.avatar-upload input[type="file"] { display: none; }
+
+.form-stack { width: 392px; max-width: 92vw; margin: 0 auto; }
+
+.section-title { 
+  text-align:center; 
+  font-size: 22px; 
+  font-weight: 800; 
+  margin: 12px 0 22px; 
+}
+
+.block-title { font-weight: 700; margin: 0 0 8px; }
+
+.gap-xxl { height: 28px; }
+
+.back-link { 
+  text-decoration:none; 
+  font-size: 35px; 
+  line-height:0; 
+  padding: 6px 10px; 
+  border:transparent; 
+  color:#111827; 
+}
+
+.center { display:grid; place-items:center; }
+
+.form-panel{
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 16px;
+}
+.form-field{ margin-bottom: 14px; }
+.form-field label{
+  display: block;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field input[type="password"]{
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.form-field input:focus{
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(127,106,238,.15);
+}
+
+#login-btn{
+  width: 100%;
+  height: 44px;
+  border: 0;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: .2px;
+  cursor: pointer;
+  color: #fff;
+  background: var(--primary);
+  margin-top: 8px;
+  transition: transform .02s ease, filter .15s ease;
+}
+#login-btn:active{ transform: translateY(1px); }
+#login-btn:disabled{
+  background: var(--primary-disabled);
+  cursor: not-allowed;
+  filter: saturate(.9);
+}
+
+#signup-link{
+  display: block;
+  margin-top: 12px;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 500;
+}
+
+.secondary-bar{
+  width: 100%;
+  margin-top: 10px;
+  background: #F3F4F6;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+}
+.form-stack{ transform: scale(0.9); }
+.site-footer{ height: 20px; }
+.avatar-upload{ width: 150px; height: 150px; }
