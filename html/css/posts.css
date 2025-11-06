@@ -8,6 +8,10 @@
   --primary-weak: #ACA0EB;
 }
 
+a {
+  text-decoration: none;
+}
+
 *{ box-sizing: border-box; }
 html, body{ height:100%; }
 body{
