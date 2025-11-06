@@ -1,14 +1,14 @@
 /* 기본 설정 */
 body {
   margin: 0;
-  font-family: 'Pretendard', sans-serif;
-  background-color: #f4f4f4;
+  font-family: 'Pretendard', sans-serif, 'Sandoll GoGoRound';
+  background-color: #f4f5f7;
   color: #333;
 }
 
 header.site-header{
   border-bottom: 1px solid #D1D5DB; 
-  height: 80px;        
+  height: 104px;        
   display: flex;
   align-items: center;            
   justify-content: center;  
@@ -16,9 +16,9 @@ header.site-header{
 }
 
 .site-header h1{
-  font-size: 26px;
-  font-weight: 800;
-  color: #111827;
+  font-size: 32px;
+  font-weight: 400;
+  color: #000000;
 }
 
 /* 전체 영역 가운데 정렬 */
@@ -39,6 +39,8 @@ main {
 /* 제목 */
 #login-section h2 {
   text-align: center;
+  font-weight: 700;
+  font-size: 32px;
   margin-bottom: 50px;
 }
 
@@ -49,8 +51,10 @@ main {
   margin-bottom: 3px;
 }
 
+
 label {
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 15px;
   margin-bottom: 8px;
 }
 

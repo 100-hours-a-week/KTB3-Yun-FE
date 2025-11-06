@@ -1,5 +1,5 @@
 :root{
-  --bg: #f4f4f4;
+  --bg: #f4f5f7;
   --ink: #111827;
   --muted: #6B7280;
   --line: #D1D5DB;
@@ -15,7 +15,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Pretendard';
+  font-family: 'Pretendard', Sandoll GogoRound;
 }
 
 header.site-header{
@@ -94,8 +94,8 @@ main{
 
 .avatar-upload {
   width: 180px; height: 180px; border-radius: 50%;
-  background: #e5e7eb; display: grid; place-items: center;
-  font-size: 42px; color: #6b7280; user-select: none;
+  background: #c4c4c4; display: grid; place-items: center;
+  font-size: 42px; color: #000000; user-select: none; font-weight: 100;
   border: 1px solid #d1d5db;
 }
 .avatar-upload input[type="file"] { display: none; }
