@@ -1,6 +1,6 @@
 :root{
-  --bg: #F4F4F4;
-  --ink: #111827;
+  --bg: #F4F5F7;
+  --ink: #000000;
   --muted: #6B7280;
   --line: #D1D5DB;
   --panel: #FFFFFF;
@@ -28,8 +28,8 @@ body{
 }
 .site-header .site-title{
   margin:0;
-  font-size:26px;
-  font-weight:800;
+  font-size:32px;
+  font-weight:400;
   letter-spacing:-.3px;
 }
 .profile-button{
@@ -59,7 +59,8 @@ body{
 .greeting{
   align-self: center;
   text-align: center;
-  font-size: 18px;
+  font-size: 24px;
+  font-weight: 400;
   line-height: 1.5;
   margin-bottom: 10px;  
 }
@@ -68,10 +69,10 @@ body{
 .compose-btn{
   margin-top: 6px;
   position: static;
-  height:36px; padding: 0 14px;
-  border-radius: 8px;
+  height:39px; padding: 0 14px;
+  border-radius: 20px;
   background: var(--primary-weak);
-  color:#fff; text-decoration:none; font-weight:700; font-size:14px;
+  color:#fff; text-decoration:none; font-weight:700; font-size:16px;
   display:inline-flex; align-items:center; justify-content:center;
   transition: background .15s ease, transform .02s ease;
 }
@@ -102,8 +103,8 @@ body{
 }
 .post-title{
   margin: 0;
-  font-size: 18px;
-  font-weight: 800;
+  font-size: 24px;
+  font-weight: 700;
   letter-spacing: -0.2px;
   color: var(--ink);
   white-space: nowrap;
@@ -119,8 +120,9 @@ body{
 }
 
 .post-time {
-  font-size: 12px;
-  color: var(--muted);
+  font-size: 14px;
+  font-size: 400;
+  color: var(--ink);
   white-space: nowrap;
   margin-top: 10px;
 }
@@ -129,8 +131,9 @@ body{
   display: flex;
   align-items: center;
   gap: 10px;
-  color: var(--muted);
-  font-size: 12px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 400;
   margin-top: 10px;
 }
 
@@ -143,6 +146,6 @@ body{
   width:26px; height:26px; border-radius:50%;
   background:#E5E7EB; display:inline-block;
 }
-.author-name{ font-size:13px; color:#374151; }
+.author-name{ font-size:15px; font-weight: 700; color:#000000; }
 
 #infinite-sentinel{ height: 64px; }

@@ -15,7 +15,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Pretendard', Sandoll GogoRound;
+  font-family: 'Pretendard';
 }
 
 header.site-header{
