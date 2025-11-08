@@ -68,13 +68,30 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
     line-height: 1;
 }
 
+.profile-dropdown {
+    position: relative;
+}
+
 .profile-button {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 36px;
     height: 36px;
-    text-decoration: none;
+    list-style: none;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* details/summary 기본 스타일 제거 */
+.profile-button::-webkit-details-marker {
+    display: none;
+}
+
+.profile-button::marker {
+    display: none;
 }
 
 .profile-avatar {
@@ -84,6 +101,44 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
     background: #fff;
     border: 1px solid var(--line);
     display: block;
+}
+
+/* 드롭다운 메뉴 */
+.profile-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 160px;
+    background: #D9D9D9;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 8px 0;
+    margin: 0;
+    z-index: 1000;
+}
+
+.profile-dropdown-menu li {
+    margin: 0;
+}
+
+.profile-dropdown-menu a {
+    display: block;
+    padding: 10px 16px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.profile-dropdown-menu a:hover {
+    background: #f5f5f5;
+}
+
+/* details가 닫혀있을 때 메뉴 숨기기 */
+.profile-dropdown:not([open]) .profile-dropdown-menu {
+    display: none;
 }
 
 /* ============== Page Container ============== */
