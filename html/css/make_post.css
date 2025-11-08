@@ -224,13 +224,9 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
     color: #fff;
     font-size: 14px;
     font-weight: 700;
-    width: 355px;
     cursor: pointer;
+    width: 400px;
     transition: background 0.2s;
-}
-
-.submit-btn:hover {
-    background: var(--purple-strong);
 }
 
 .submit-btn:active {
