@@ -39,7 +39,7 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
 
 /* ===== 공통 헤더 내부 래퍼 ===== */
 .site-header {
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid #000000;
     background: var(--bg);
 }
 
@@ -50,7 +50,7 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
+    height: 104px;
 }
 
 /* 기존 요소들 유지 (그대로 복사 또는 통합) */
@@ -110,9 +110,12 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
 
 /* 수정/삭제 버튼 (우측) */
 .post-buttons { display: inline-flex; gap: 8px; }
-.post__btn {
-    padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line);
-    background: #fff;
+.post-buttons > a {
+    font-size: 15px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    border: 1px solid var(--purple);
+    background: var(--bg);
 }
 .post__btn--edit:hover,
 .post__btn--delete:hover { background: #fafafa; }
@@ -172,7 +175,7 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
 .comment-card textarea {
     width: 100%;
     min-height: 120px;
-    resize: vertical;
+    resize: none;
     padding: 12px;
     border: none;
     font: inherit;
@@ -230,7 +233,7 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
 .comment-content { margin: 6px 0 10px; }
 .comment-buttons { display: flex; gap: 8px; }
 .comment-edit, .comment-delete {
-    padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); background: #fff;
+    padding: 6px 10px; border-radius: 8px; border: 1px solid var(--purple); background: var(--bg);
 }
 .comment-edit:hover, .comment-delete:hover { background: #fafafa; }
 
