@@ -1,0 +1,439 @@
+/* ============== Base ============== */
+:root {
+    --max-w: 355px;
+    --gap: 16px;
+    --round: 12px;
+    --text: #222;
+    --muted: #777;
+    --line: #e6e6e6;
+    --bg: #f7f7f8;
+
+    /* 버튼/상태 색 */
+    --purple: #ACA0EB;   /* 기본 보라 */
+    --purple-strong: #7F6AAE; /* 활성(강조) */
+    --gray-btn: #D9D9D9; /* 비활성 회색 */
+    --black: #000;
+    --danger: #E74C3C;
+    --hover-bg: #E9E9E9;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+    margin: 0;
+    color: var(--text);
+    background: var(--bg);
+    font-family: 'Pretendard', sans-serif;
+    line-height: 1.5;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; background: none; border: none; }
+[hidden] { display: none !important; }
+
+/* ===== 공통 헤더 ===== */
+.site-header {
+    border-bottom: 1px solid #000000;
+    background: var(--bg);
+}
+
+.site-header__inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 104px;
+}
+
+.site-title {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    text-align: center;
+    flex: 1;
+    color: var(--text);
+}
+
+.profile-dropdown {
+    position: relative;
+}
+
+.profile-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    list-style: none;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.profile-button::-webkit-details-marker {
+    display: none;
+}
+
+.profile-button::marker {
+    display: none;
+}
+
+.profile-button:hover {
+    background: var(--hover-bg);
+    border-radius: 50%;
+}
+
+.profile-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid var(--line);
+    display: block;
+}
+
+/* 드롭다운 메뉴 */
+.profile-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 160px;
+    background: #D9D9D9;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 8px 0;
+    margin: 0;
+    z-index: 1000;
+}
+
+.profile-dropdown-menu li {
+    margin: 0;
+}
+
+.profile-dropdown-menu a {
+    display: block;
+    padding: 10px 16px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.profile-dropdown-menu a:hover {
+    background: #f5f5f5;
+}
+
+/* details가 닫혀있을 때 메뉴 숨기기 */
+.profile-dropdown:not([open]) .profile-dropdown-menu {
+    display: none;
+}
+
+/* ============== Page Container ============== */
+.container { 
+    max-width: var(--max-w); 
+    margin: 0 auto; 
+    padding: 24px var(--gap) 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ============== Edit Profile Section ============== */
+.edit-profile {
+    padding: 24px;
+    border: none;
+}
+
+.edit-profile-title {
+    text-align: center;
+    margin: 0 0 24px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+/* ============== Edit Profile Form ============== */
+.edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+}
+
+.form-field > label:not(.profile-picture-label) {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text);
+}
+
+.form-field input[type="text"],
+.form-field input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: var(--bg);
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    box-sizing: border-box;
+}
+
+.form-field input[type="text"],
+.form-field input[type="nickname"]{
+    border: 1.4px solid #000000;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.readonly-input {
+    background: var(--bg);
+    color: var(--muted);
+    cursor: not-allowed;
+}
+
+.helper-text {
+    font-size: 12px;
+    color: var(--danger);
+}
+
+/* ============== Profile Picture Section ============== */
+
+.profile-picture-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.profile-picture-label {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.profile-picture-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--line);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-picture-label:hover .profile-picture-placeholder {
+    background: var(--hover-bg);
+}
+
+.change-text {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.profile-picture-input-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* ============== Form Actions ============== */
+.form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.submit-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    background: var(--purple);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    width: 355px;
+    transition: background 0.2s;
+    margin-bottom: -20px;
+}
+
+.submit-btn:hover {
+    background: var(--purple-strong);
+}
+
+.submit-btn:active {
+    transform: translateY(1px);
+}
+
+/* ============== Withdraw Button ============== */
+.withdraw-modal {
+    position: relative;
+}
+
+.withdraw-btn {
+    display: inline-block;
+    padding: 5px 5px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;
+    list-style: none;
+}
+
+.withdraw-btn {
+    margin-top: -30px;
+}
+
+.withdraw-btn::-webkit-details-marker {
+    display: none;
+}
+
+.withdraw-btn::marker {
+    display: none;
+}
+
+/* ============== Edit-Complete ============== */
+.edit-complete {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    background: var(--purple);
+    border-radius: 24px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #FFF;
+}
+
+/* ============== Modal ============== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    min-width: 320px;
+    max-width: 90vw;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.modal-title {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text);
+}
+
+.modal-desc {
+    margin: 0 0 20px;
+    font-size: 14px;
+    color: var(--text);
+    text-align: center;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.modal-btn {
+    min-width: 100px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: inline-block;
+}
+
+.modal-btn--cancel {
+    background: #333;
+    color: #fff;
+    border: none;
+}
+
+.modal-btn--cancel:hover {
+    background: #222;
+}
+
+.modal-btn--confirm {
+    background: var(--purple);
+    color: #fff;
+    border: none;
+}
+
+.modal-btn--confirm:hover {
+    background: var(--purple-strong);
+}
+
+/* details가 닫혀있을 때 모달 숨기기 */
+.withdraw-modal:not([open]) .modal-overlay {
+    display: none;
+}
+
+/* ============== Toast Message ============== */
+.toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    z-index: 2000;
+    animation: slideUp 0.3s ease-out;
+}
+
+.toast-message {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
