@@ -1,0 +1,238 @@
+/* ============== Base ============== */
+:root {
+    --max-w: 570px;
+    --gap: 16px;
+    --round: 12px;
+    --text: #222;
+    --muted: #777;
+    --line: #e6e6e6;
+    --bg: #f7f7f8;
+
+    /* 버튼/상태 색 */
+    --purple: #ACA0EB;   /* 기본 보라 */
+    --purple-strong: #7F6AAE; /* 활성(강조) */
+    --gray-btn: #D9D9D9; /* 비활성 회색 */
+    --black: #000;
+    --danger: #E74C3C
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+    margin: 0;
+    color: var(--text);
+    background: var(--bg);
+    font-family: 'Pretendard', sans-serif;
+    line-height: 1.5;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; background: none; border: none; }
+[hidden] { display: none !important; }
+
+/* ===== 공통 헤더 ===== */
+.site-header {
+    border-bottom: 1px solid #000000;
+    background: var(--bg);
+}
+
+.site-header__inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 104px;
+}
+
+.site-title {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    text-align: center;
+    flex: 1;
+    color: var(--text);
+}
+
+.back-link {
+    font-size: 50px;
+    color: #000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    line-height: 1;
+}
+
+.profile-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    text-decoration: none;
+}
+
+.profile-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid var(--line);
+    display: block;
+}
+
+/* ============== Page Container ============== */
+.container { 
+    max-width: var(--max-w); 
+    margin: 0 auto; 
+    padding: 24px var(--gap) 64px;
+}
+
+/* ============== Edit Post Section ============== */
+.edit-post {
+    padding: 24px;
+    border: none;
+}
+
+.edit-post-title {
+    display: flex;
+    justify-content: center;
+
+    margin: 0 0 24px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+/* ============== Edit Post Form ============== */
+
+.divider{
+    height: 1px;
+    background: var(--line);
+    border: none;
+    margin: 0 0 0;
+}
+
+.edit-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-field > label:not(.file-select-btn) {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text);
+}
+
+.form-field input[type="text"],
+.form-field textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: var(--bg);
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    box-sizing: border-box;
+}
+
+.form-field textarea {
+    min-height: 200px;
+    resize: none;
+    line-height: 1.6;
+}
+
+/* ============== Image Upload Section ============== */
+.image-upload-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.helper-text {
+    font-size: 12px;
+    color: var(--danger);
+}
+
+.image-upload-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.file-select-btn {
+    padding: 8px 16px;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    background: #D9D9D9;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.file-name-display {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #fff;
+    font-size: 14px;
+    color: var(--text);
+    cursor: default;
+    box-sizing: border-box;
+}
+
+.file-input-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* ============== Form Actions ============== */
+.form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.submit-btn {
+    padding: 12px 32px;
+    border: none;
+    border-radius: 6px;
+    background: var(--purple);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submit-btn:hover {
+    background: var(--purple-strong);
+}
+
+.submit-btn:active {
+    transform: translateY(1px);
+}
+
