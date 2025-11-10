@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (res.ok) {
                 const test = (await res.text()).trim();
                 if (test === 'login_success') {
+                    alert("로그인 성공")
                     location.assign('./posts.html');
                     return;
                 }
@@ -48,6 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             if (res.status === 404) {
+                passwordHelper.textContent = '*아이디 또는 비밀번호를 확인해주세요';
+            }
+
+            if (res.status === 401) { 
                 passwordHelper.textContent = '*아이디 또는 비밀번호를 확인해주세요';
             }
         } catch (err) {
