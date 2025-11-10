@@ -92,7 +92,7 @@ input:focus {
   transition: background-color 0.3s;
 }
 
-#login-btn:active{ transform: translateY(1px); }
+#login-btn:active{ transform: translateY(1px);}
 
 #login-btn:disabled{
   background: #ACA0EB;
@@ -100,9 +100,9 @@ input:focus {
   filter: saturate(.9);
 }
 
-/* #login-btn:hover {
-  background-color: #7F6AEE;
-} */
+#login-btn:enabled{
+    background-color: #7F6AEE;
+}
 
 #signup-link {
   display: block;
