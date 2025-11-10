@@ -275,6 +275,7 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
 
 /* ============== Comment List ============== */
 .comment-list ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
+.comment-template { display: none; }
 .comment-item {
     border-radius: var(--round);
     padding: 12px;
@@ -327,4 +328,3 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
 .mt-16 { margin-top: 16px !important; }
 .mb-16 { margin-bottom: 16px !important; }
 .center { text-align: center !important; }
-

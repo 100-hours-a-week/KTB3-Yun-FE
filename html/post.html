@@ -30,13 +30,13 @@
     <article class="post">
       <!-- 제목 / 작성자 / 작성일시 -->
       <header class="post-header">
-        <h2 class="post-title">제목 1</h2>
+        <h2 id="post-title" class="post-title">제목 1</h2>
 
         <div class="post-meta">
           <div class="post-author">
-            <img src="https://via.placeholder.com/40" alt="작성자 프로필" class="author-avatar" />
-            <span class="author-name">더미 작성자 1</span>
-            <time class="post-date">2021-01-01 00:00:00</time>
+            <img id="post-author-avatar" src="https://via.placeholder.com/40" alt="작성자 프로필" class="author-avatar" />
+            <span id="post-author-name" class="author-name">더미 작성자 1</span>
+            <time id="post-date" class="post-date">2021-01-01 00:00:00</time>
           </div>
           <div class="post-buttons">
             <a class="edit-btn" href="./edit_post.html">수정</a>
@@ -47,31 +47,27 @@
 
       <!-- 게시글 이미지 -->
       <figure class="post-image">
-        <img src="https://via.placeholder.com/600x300" alt="게시글 이미지" />
+        <img id="post-image" src="https://via.placeholder.com/600x300" alt="게시글 이미지" />
       </figure>
 
       <!-- 게시글 내용 -->
-      <section class="post-content">
-        <p>
-          무엇을 얘기할까요?
-        </p>
-        <p>
-          아무 말이 좋겠습니다.
-        </p>
+      <section id="post-content" class="post-content">
+        <p>무엇을 얘기할까요?</p>
+        <p>아무 말이 좋겠습니다.</p>
       </section>
 
       <!-- 좋아요 / 조회수 / 댓글수 -->
       <section class="post-stats">
         <div class="stat-item">
-          <div class="stat-value">123</div>
+          <div id="post-likes" class="stat-value">123</div>
           <div class="stat-label">좋아요수</div>
         </div>
         <div class="stat-item">
-          <div class="stat-value">123</div>
+          <div id="post-views" class="stat-value">123</div>
           <div class="stat-label">조회수</div>
         </div>
         <div class="stat-item">
-          <div class="stat-value">123</div>
+          <div id="post-comments-count" class="stat-value">123</div>
           <div class="stat-label">댓글</div>
         </div>
       </section>
@@ -92,43 +88,17 @@
 
       <!-- 댓글 목록 -->
       <section class="comment-list">
-        <ul>
-          <li class="comment-item">
+        <ul id="comment-list">
+          <li id="comment-template" class="comment-item comment-template" aria-hidden="true">
             <div class="comment-meta">
               <img src="https://via.placeholder.com/32" alt="작성자 프로필" class="comment-avatar" />
-              <span class="comment-author">더미 작성자 1</span>
+              <span class="comment-author">더미 작성자</span>
               <time class="comment-date">2021-01-01 00:00:00</time>
             </div>
-            <p class="comment-content">오늘도 좋은 하루 보내세요!</p>
+            <p class="comment-content">댓글 내용</p>
             <div class="comment-buttons">
               <button class="comment-edit">수정</button>
               <button class="comment-delete" data-open="#comment-delete-modal">삭제</button>
-            </div>
-          </li>
-
-          <li class="comment-item">
-            <div class="comment-meta">
-              <img src="https://via.placeholder.com/32" alt="작성자 프로필" class="comment-avatar" />
-              <span class="comment-author">더미 작성자 2</span>
-              <time class="comment-date">2021-01-01 00:10:00</time>
-            </div>
-            <p class="comment-content">이 글 정말 공감돼요!</p>
-            <div class="comment-buttons">
-              <button class="comment-edit">수정</button>
-              <button class="comment-delete">삭제</button>
-            </div>
-          </li>
-
-          <li class="comment-item">
-            <div class="comment-meta">
-              <img src="https://via.placeholder.com/32" alt="작성자 프로필" class="comment-avatar" />
-              <span class="comment-author">더미 작성자 3</span>
-              <time class="comment-date">2021-01-01 00:30:00</time>
-            </div>
-            <p class="comment-content">좋은 글 감사합니다!</p>
-            <div class="comment-buttons">
-              <button class="comment-edit">수정</button>
-              <button class="comment-delete">삭제</button>
             </div>
           </li>
         </ul>
@@ -183,5 +153,7 @@
     </div>
   </div>
 </section>
+
+<script src="./js/post.js" defer></script>
 </body>
 </html>

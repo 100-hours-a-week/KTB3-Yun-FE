@@ -117,6 +117,7 @@ body{
 .compose-btn:active{ transform: translateY(1px); }
 
 .post-list{ display:flex; flex-direction:column; gap:16px; }
+.post-card-template{ display:none; }
 
 .post-card{
   background: var(--panel);

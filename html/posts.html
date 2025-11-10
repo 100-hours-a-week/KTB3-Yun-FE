@@ -34,198 +34,25 @@
 
     <!-- 게시글 리스트 -->
     <section id="post-list" class="post-list" aria-label="게시글 목록">
-      <!-- 카드 1 -->
-      <a href="./post.html" class="post-link">   
-        <article class="post-card" tabindex="0">
+      <a href="./post.html" id="post-card-template" class="post-link post-card-template" aria-hidden="true">
+        <article class="post-card" tabindex="-1">
           <header class="post-head">
-            <!-- 제목은 CSS로 최대 1줄/26자까지만 보이도록 줄임 처리 예정 -->
-            <h3 class="post-title">제목 1</h3>
+            <h3 class="post-title">제목</h3>
           </header>
           <div class="post-meta">
-              <div class="post-stats" aria-label="통계">
-                  <span class="stat stat-like" aria-label="좋아요">좋아요 0</span>
-                  <span class="stat stat-comment" aria-label="댓글">댓글 0</span>
-                  <span class="stat stat-view" aria-label="조회수">조회수 0</span>
-              </div>
-            <time class="post-time" datetime="2021-01-01T00:00:00">2021-01-01 00:00:00</time>
+            <div class="post-stats" aria-label="통계">
+              <span class="stat stat-like" aria-label="좋아요">좋아요 0</span>
+              <span class="stat stat-comment" aria-label="댓글">댓글 0</span>
+              <span class="stat stat-view" aria-label="조회수">조회수 0</span>
+            </div>
+            <time class="post-time" datetime=""></time>
           </div>
-
-        <footer class="post-foot">
-          <span class="author-avatar" aria-hidden="true"></span>
-          <span class="author-name">더미 작성자 1</span>
-        </footer>
-      </article>
+          <footer class="post-foot">
+            <span class="author-avatar" aria-hidden="true"></span>
+            <span class="author-name">작성자</span>
+          </footer>
+        </article>
       </a>
-
-      <!-- 카드 2 (예시) -->
-      <article class="post-card" tabindex="0">
-        <header class="post-head">
-          <h3 class="post-title">제목 2</h3>
-        </header>
-        <div class="post-meta">
-            <div class="post-stats" aria-label="통계">
-                <span class="stat stat-like" aria-label="좋아요">좋아요 0</span>
-                <span class="stat stat-comment" aria-label="댓글">댓글 0</span>
-                <span class="stat stat-view" aria-label="조회수">조회수 0</span>
-             </div>
-          <time class="post-time" datetime="2021-01-01T00:00:00">2021-01-01 00:00:00</time>
-        </div>
-        <footer class="post-foot">
-          <span class="author-avatar" aria-hidden="true"></span>
-          <span class="author-name">더미 작성자 2</span>
-        </footer>
-      </article>
-
-      <!-- 카드 3 (예시) -->
-      <article class="post-card" tabindex="0">
-        <header class="post-head">
-          <h3 class="post-title">제목 3</h3>
-        </header>
-        <div class="post-meta">
-            <div class="post-stats" aria-label="통계">
-                <span class="stat stat-like" aria-label="좋아요">좋아요 0</span>
-                <span class="stat stat-comment" aria-label="댓글">댓글 0</span>
-                <span class="stat stat-view" aria-label="조회수">조회수 0</span>
-             </div>
-          <time class="post-time" datetime="2021-01-01T00:00:00">2021-01-01 00:00:00</time>
-        </div>
-        <footer class="post-foot">
-          <span class="author-avatar" aria-hidden="true"></span>
-          <span class="author-name">더미 작성자 3</span>
-        </footer>
-      </article>
-
-      <!-- 카드 4 (예시) -->
-      <article class="post-card" tabindex="0">
-        <header class="post-head">
-          <h3 class="post-title">제목 4</h3>
-        </header>
-        <div class="post-meta">
-            <div class="post-stats" aria-label="통계">
-                <span class="stat stat-like" aria-label="좋아요">좋아요 0</span>
-                <span class="stat stat-comment" aria-label="댓글">댓글 0</span>
-                <span class="stat stat-view" aria-label="조회수">조회수 0</span>
-             </div>
-          <time class="post-time" datetime="2021-01-01T00:00:00">2021-01-01 00:00:00</time>
-        </div>
-        <footer class="post-foot">
-          <span class="author-avatar" aria-hidden="true"></span>
-          <span class="author-name">더미 작성자 4</span>
-        </footer>
-      </article>
-
-      <!-- 카드 5 (예시) -->
-      <article class="post-card" tabindex="0">
-        <header class="post-head">
-          <h3 class="post-title">제목 5</h3>
-        </header>
-        <div class="post-meta">
-            <div class="post-stats" aria-label="통계">
-                <span class="stat stat-like" aria-label="좋아요">좋아요 0</span>
-                <span class="stat stat-comment" aria-label="댓글">댓글 0</span>
-                <span class="stat stat-view" aria-label="조회수">조회수 0</span>
-             </div>
-          <time class="post-time" datetime="2021-01-01T00:00:00">2021-01-01 00:00:00</time>
-        </div>
-        <footer class="post-foot">
-          <span class="author-avatar" aria-hidden="true"></span>
-          <span class="author-name">더미 작성자 5</span>
-        </footer>
-      </article>
-
-      <!-- 카드 6 (예시) -->
-      <article class="post-card" tabindex="0">
-        <header class="post-head">
-          <h3 class="post-title">제목 6</h3>
-        </header>
-        <div class="post-meta">
-            <div class="post-stats" aria-label="통계">
-                <span class="stat stat-like" aria-label="좋아요">좋아요 0</span>
-                <span class="stat stat-comment" aria-label="댓글">댓글 0</span>
-                <span class="stat stat-view" aria-label="조회수">조회수 0</span>
-             </div>
-          <time class="post-time" datetime="2021-01-01T00:00:00">2021-01-01 00:00:00</time>
-        </div>
-        <footer class="post-foot">
-          <span class="author-avatar" aria-hidden="true"></span>
-          <span class="author-name">더미 작성자 6</span>
-        </footer>
-      </article>
-
-      <!-- 카드 7 (예시) -->
-      <article class="post-card" tabindex="0">
-        <header class="post-head">
-          <h3 class="post-title">제목 7</h3>
-        </header>
-        <div class="post-meta">
-            <div class="post-stats" aria-label="통계">
-                <span class="stat stat-like" aria-label="좋아요">좋아요 0</span>
-                <span class="stat stat-comment" aria-label="댓글">댓글 0</span>
-                <span class="stat stat-view" aria-label="조회수">조회수 0</span>
-             </div>
-          <time class="post-time" datetime="2021-01-01T00:00:00">2021-01-01 00:00:00</time>
-        </div>
-        <footer class="post-foot">
-          <span class="author-avatar" aria-hidden="true"></span>
-          <span class="author-name">더미 작성자 7</span>
-        </footer>
-      </article>
-      <!-- 카드 8 (예시) -->
-      <article class="post-card" tabindex="0">
-        <header class="post-head">
-          <h3 class="post-title">제목 8</h3>
-        </header>
-        <div class="post-meta">
-            <div class="post-stats" aria-label="통계">
-                <span class="stat stat-like" aria-label="좋아요">좋아요 0</span>
-                <span class="stat stat-comment" aria-label="댓글">댓글 0</span>
-                <span class="stat stat-view" aria-label="조회수">조회수 0</span>
-             </div>
-          <time class="post-time" datetime="2021-01-01T00:00:00">2021-01-01 00:00:00</time>
-        </div>
-        <footer class="post-foot">
-          <span class="author-avatar" aria-hidden="true"></span>
-          <span class="author-name">더미 작성자 8</span>
-        </footer>
-      </article>
-
-      <!-- 카드 9 (예시) -->
-      <article class="post-card" tabindex="0">
-        <header class="post-head">
-          <h3 class="post-title">제목 9</h3>
-        </header>
-        <div class="post-meta">
-            <div class="post-stats" aria-label="통계">
-                <span class="stat stat-like" aria-label="좋아요">좋아요 0</span>
-                <span class="stat stat-comment" aria-label="댓글">댓글 0</span>
-                <span class="stat stat-view" aria-label="조회수">조회수 0</span>
-             </div>
-          <time class="post-time" datetime="2021-01-01T00:00:00">2021-01-01 00:00:00</time>
-        </div>
-        <footer class="post-foot">
-          <span class="author-avatar" aria-hidden="true"></span>
-          <span class="author-name">더미 작성자 9</span>
-        </footer>
-      </article>
-      
-      <!-- 카드 10 (예시) -->
-      <article class="post-card" tabindex="0">
-        <header class="post-head">
-          <h3 class="post-title">제목 10</h3>
-        </header>
-        <div class="post-meta">
-            <div class="post-stats" aria-label="통계">
-                <span class="stat stat-like" aria-label="좋아요">좋아요 0</span>
-                <span class="stat stat-comment" aria-label="댓글">댓글 0</span>
-                <span class="stat stat-view" aria-label="조회수">조회수 0</span>
-             </div>
-          <time class="post-time" datetime="2021-01-01T00:00:00">2021-01-01 00:00:00</time>
-        </div>
-        <footer class="post-foot">
-          <span class="author-avatar" aria-hidden="true"></span>
-          <span class="author-name">더미 작성자 10</span>
-        </footer>
-      </article>
     </section>
 
     <!-- 인피니트 스크롤 센티넬(관찰용) -->
