@@ -317,18 +317,6 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
     display: none;
 }
 
-/* ============== Edit-Complete ============== */
-.edit-complete {
-    display: flex;
-    align-items: center;
-    padding: 10px 16px;
-    background: var(--purple);
-    border-radius: 24px;
-    font-size: 18px;
-    font-weight: 400;
-    color: #FFF;
-}
-
 /* ============== Modal ============== */
 .modal-overlay {
     position: fixed;
@@ -437,3 +425,23 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
     }
 }
 
+.edit-toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 999px;
+    background: var(--purple);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+    opacity: 1;
+    z-index: 2000;
+}
+
+.edit-toast[hidden] {
+    opacity: 0;
+    pointer-events: none;
+}
