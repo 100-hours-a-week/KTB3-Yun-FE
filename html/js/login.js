@@ -48,15 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            if (res.status === 404) {
+            if (res.status === 404 || res.status === 401) {
                 passwordHelper.textContent = '*아이디 또는 비밀번호를 확인해주세요';
             }
 
-            if (res.status === 401) { 
-                passwordHelper.textContent = '*아이디 또는 비밀번호를 확인해주세요';
-            }
         } catch (err) {
-            passwordHelper.textContent = '잠시 후 다시 시도해주세요.';
+            alert('잠시 후 다시 시도해주세요.');
         }
     }
     form.addEventListener('submit', handleSubmit);
