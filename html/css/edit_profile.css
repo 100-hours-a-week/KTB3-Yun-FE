@@ -444,7 +444,7 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
     transform: translateX(-50%);
     padding: 12px 24px;
     border-radius: 999px;
-    background: var(--purple);
+    background: var(--purple-strong);
     color: #fff;
     font-size: 14px;
     font-weight: 600;
