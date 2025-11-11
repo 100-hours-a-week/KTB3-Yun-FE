@@ -23,21 +23,27 @@ body{
 
 .site-header{
   border-bottom: 1px solid #000000;
-  height: 104px;
-  position: relative;
+  background: var(--bg);
+}
+.site-header__inner{
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 16px;
   display: flex;
-  align-items: center;            
-  justify-content: center;
-  padding: 0 16px;     
+  align-items: center;
+  justify-content: space-between;
+  height: 104px;
 }
 .site-header .site-title{
   margin:0;
   font-size:32px;
   font-weight:400;
   letter-spacing:-.3px;
+  text-align:center;
+  flex:1;
 }
 .profile-dropdown{
-  position:absolute; right:16px; top:50%; transform:translateY(-50%);
+  position: relative;
 }
 .profile-button{
   display:inline-grid; place-items:center;

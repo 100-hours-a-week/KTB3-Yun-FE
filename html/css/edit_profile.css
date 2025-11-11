@@ -57,6 +57,18 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
     color: var(--text);
 }
 
+.back-link {
+    font-size: 50px;
+    color: #000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    line-height: 1;
+}
+
 .profile-dropdown {
     position: relative;
 }
