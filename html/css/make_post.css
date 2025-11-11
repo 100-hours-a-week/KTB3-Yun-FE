@@ -10,7 +10,7 @@
 
     /* 버튼/상태 색 */
     --purple: #ACA0EB;   /* 기본 보라 */
-    --purple-strong: #7F6AAE; /* 활성(강조) */
+    --purple-strong: #7F6AEE; /* 활성(강조) */
     --gray-btn: #D9D9D9; /* 비활성 회색 */
     --black: #000;
     --danger: #E74C3C
@@ -148,13 +148,13 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
     padding: 24px var(--gap) 64px;
 }
 
-/* ============== Edit Post Section ============== */
-.edit-post {
+/* ============== Make Post Section ============== */
+.make-post {
     padding: 24px;
     border: none;
 }
 
-.edit-post-title {
+.make-post-title {
     display: flex;
     justify-content: center;
 
@@ -164,7 +164,7 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
     color: var(--text);
 }
 
-/* ============== Edit Post Form ============== */
+/* ============== Make Post Form ============== */
 
 .divider{
     height: 1px;
@@ -173,7 +173,7 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
     margin: 0 0 0;
 }
 
-.edit-post-form {
+.make-post-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -279,7 +279,6 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
     color: #fff;
     font-size: 14px;
     font-weight: 700;
-    cursor: pointer;
     width: 400px;
     transition: background 0.2s;
 }
@@ -288,3 +287,8 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
     transform: translateY(1px);
 }
 
+.submit-btn:disabled { cursor: not-allowed; }
+
+.submit-btn:enabled{
+    background-color: var(--purple-strong)
+}
