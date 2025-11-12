@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalConfirmBtn = document.getElementById('post-delete-confirm');
     const modalCancleBtn = document.querySelector('[data-action="post-delete-cancel"]');
     const editLink = document.getElementById('edit-post-link');
+    const likeBtn = document.getElementById('post-likes');
+    const likeToggle = document.querySelector('.stat-like-toggle');
 
     if (!postId) {
         alert('게시글 정보를 찾을 수 없습니다.');
@@ -157,7 +159,75 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    //좋아요 상태 확인
+    async function fetchLikeStatus() {
+        try {
+            const res = await fetch(`${API_BASE_URL}/posts/${postId}/likes`, {
+            method: 'GET',
+            credentials: 'include',
+            });
+            if (res.ok) {
+                const isLiked = await res.json();
+                likeToggle.dataset.liked = isLiked ? 'true' : 'false';
+                return;
+            }            
+        } catch(err) {
+            alert('잠시 후 다시 시도해주세요.');
+        }
+    }
+
     fetchPostDetail();
+    fetchLikeStatus();
+
+    //좋아요, 좋아요 취소
+    likeBtn.addEventListener('click', async () => {
+
+        const isLiked = likeToggle.dataset.liked;
+
+        if (isLiked === 'false'){
+            try {
+                const res = await fetch(`${API_BASE_URL}/posts/${postId}/likes`, {
+                    method: 'POST',
+                    credentials: 'include',
+                });
+
+                if (res.status === 204) {
+                    likeToggle.dataset.liked = 'true';
+                    postLikes.textContent = Number(postLikes.textContent) + 1;
+                    return;
+                }
+                
+                if (res.status === 401) {
+                    alert('로그인이 필요합니다.');
+                    location.replace('./login.html');
+                    return;
+                }
+            } catch (err) {
+                alert('잠시 후 다시 시도해주세요.');
+            }
+        } else if (isLiked === 'true') {
+            try {
+                const res = await fetch(`${API_BASE_URL}/posts/${postId}/likes`, {
+                    method: 'DELETE',
+                    credentials: 'include',
+                });
+
+                if (res.status === 204) {
+                    likeToggle.dataset.liked = 'false';
+                    postLikes.textContent = Number(postLikes.textContent) - 1;
+                    return;
+                }
+                
+                if (res.status === 401) {
+                    alert('로그인이 필요합니다.');
+                    location.replace('./login.html');
+                    return;
+                }
+            } catch (err) {
+                alert('잠시 후 다시 시도해주세요.');
+            }
+        }
+    });
 
     //게시글 삭제 모달 띄우기
     deleteBtn.addEventListener('click', (event) => {
@@ -204,8 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch(err) {
             alert('잠시 후 다시 시도해주세요.');
         }
-    })
-
+    });
 
     //로그아웃
     async function handleLogout() {

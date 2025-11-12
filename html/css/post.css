@@ -208,8 +208,19 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
 }
 
 .stat-item {
-    border-radius: 18px; background: #ededed; padding: 10px 8px;
+    border-radius: 18px; background: var(--gray-btn); padding: 10px 8px;
     text-align: center;
+}
+.stat-like-toggle{
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.stat-like-toggle[data-liked="true"]{
+    background: var(--purple);
+    color: #fff;
+}
+.stat-like-toggle[data-liked="true"] .stat-label{
+    color: #fff;
 }
 .stat-value { font-weight: 800; font-size: 18px; }
 .stat-label { font-size: 12px; color: var(--muted); }
