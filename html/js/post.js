@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     modalCancleBtn.addEventListener('click', closeModal);
     modal.querySelector('.modal-overlay').addEventListener('click', (event) => {
-        if (event.target === event.currentTarget) closeModal;
+        if (event.target === event.currentTarget) closeModal();
     });
 
     function closeModal(){
