@@ -76,14 +76,16 @@
 
         <!-- 댓글 작성 -->
         <section class="comment-card">
-            <div class="comment-card__inner">
-                <label for="comment-input" class="visually-hidden">댓글 입력</label>
-                <textarea id="comment-input" rows="4" placeholder="댓글을 남겨주세요!"></textarea>
+            <form id="comment-form">
+                <div class="comment-card__inner">
+                    <label for="comment-input" class="visually-hidden">댓글 입력</label>
+                    <textarea id="comment-input" rows="4" placeholder="댓글을 남겨주세요!" required></textarea>
 
-                <div class="comment-card__actions">
-                    <button type="button" class="comment-submit">댓글 등록</button>
+                    <div class="comment-card__actions">
+                        <button type="submit" id="comment-submit" class="comment-submit" disabled>댓글 등록</button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </section>
 
       <!-- 댓글 목록 -->
@@ -155,6 +157,7 @@
   </div>
 </section>
 
+<script src="./js/comments.js" defer></script>
 <script src="./js/post.js" defer></script>
 </body>
 </html>

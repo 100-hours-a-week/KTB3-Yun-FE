@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const postLikes = document.getElementById('post-likes');
     const postViews = document.getElementById('post-views');
     const postCommentsCount = document.getElementById('post-comments-count');
+    const commentList = document.getElementById('comment-list');
+    const commentTemplate = document.getElementById('comment-template');
     const logoutBtn = document.getElementById('logout-btn');
     const deleteBtn = document.getElementById('delete-post-btn');
     const modal = document.getElementById('post-delete-modal');
@@ -65,6 +67,73 @@ document.addEventListener('DOMContentLoaded', () => {
         if (postCommentsCount) {
             postCommentsCount.textContent = post.comments ?? 0;
         }
+
+        renderComments(Array.isArray(post.commentsList) ? post.commentsList : []);
+    }
+
+    function clearComments() {
+        if (!commentList || !commentTemplate) {
+            return;
+        }
+        Array.from(commentList.children).forEach((child) => {
+            if (child !== commentTemplate) {
+                child.remove();
+            }
+        });
+    }
+
+    function cloneCommentTemplate() {
+        if (!commentTemplate) {
+            return null;
+        }
+        const clone = commentTemplate.cloneNode(true);
+        clone.removeAttribute('id');
+        clone.classList.remove('comment-template');
+        clone.removeAttribute('aria-hidden');
+        return clone;
+    }
+
+    function fillCommentItem(item, comment) {
+        const author = item.querySelector('.comment-author');
+        if (author) {
+            author.textContent = comment.nickname ?? '';
+        }
+
+        const content = item.querySelector('.comment-content');
+        if (content) {
+            content.textContent = comment.content ?? '';
+        }
+
+        const date = item.querySelector('.comment-date');
+        if (date) {
+            date.textContent = comment.createdAt ?? '';
+        }
+    }
+
+    function renderComments(comments) {
+        if (!commentList) {
+            return;
+        }
+        clearComments();
+
+        if (!comments.length) {
+            const emptyItem = document.createElement('li');
+            emptyItem.className = 'comment-item comment-empty';
+            emptyItem.textContent = '첫 번째 댓글을 남겨보세요.';
+            commentList.appendChild(emptyItem);
+            return;
+        }
+
+        const fragment = document.createDocumentFragment();
+        comments.forEach((comment) => {
+            const item = cloneCommentTemplate();
+            if (!item) {
+                return;
+            }
+            fillCommentItem(item, comment);
+            fragment.appendChild(item);
+        });
+        commentList.appendChild(fragment);
     }
 
     async function fetchPostDetail() {
