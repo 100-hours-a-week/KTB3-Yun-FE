@@ -13,7 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const postViews = document.getElementById('post-views');
     const postCommentsCount = document.getElementById('post-comments-count');
     const logoutBtn = document.getElementById('logout-btn');
-
+    const deleteBtn = document.getElementById('delete-post-btn');
+    const modal = document.getElementById('post-delete-modal');
+    const modalConfirmBtn = document.getElementById('post-delete-confirm');
+    const modalCancleBtn = document.querySelector('[data-action="post-delete-cancel"]');
     const editLink = document.getElementById('edit-post-link');
 
     if (!postId) {
@@ -86,6 +89,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchPostDetail();
 
+    //게시글 삭제 모달 띄우기
+    deleteBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        modal.hidden = false;
+        document.body.classList.add('no-scroll');
+    });
+
+    modalCancleBtn.addEventListener('click', closeModal);
+    modal.querySelector('.modal-overlay').addEventListener('click', (event) => {
+        if (event.target === event.currentTarget) closeModal;
+    });
+
+    function closeModal(){
+        modal.hidden = true;
+        document.body.classList.remove('no-scroll');
+    }
+
+    modalConfirmBtn.addEventListener('click', async () => {
+        try {
+            const res = await fetch(`${API_BASE_URL}/posts/${postId}`, {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'},
+                credentials: 'include',
+            });
+
+            if (res.status === 204) {
+                alert('게시글이 삭제되었습니다.');
+                location.replace('./posts.html');
+                return;
+            }
+
+            if (res.status === 401) {
+                alert('로그인이 필요합니다.');
+                location.replace('./login.html');
+                return;
+            }
+
+            if (res.status === 403) {
+                alert('작성자만 삭제할 수 있습니다.');
+                location.replace('./posts.html');
+                return;
+            }
+        } catch(err) {
+            alert('잠시 후 다시 시도해주세요.');
+        }
+    })
+
+
+    //로그아웃
     async function handleLogout() {
         try {
             const res = await fetch(`${API_BASE_URL}/members/logout`, {
@@ -105,4 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     logoutBtn.addEventListener('click', handleLogout);
+
+
 });

@@ -40,7 +40,7 @@
           </div>
           <div class="post-buttons">
             <a class="edit-btn" id="edit-post-link" href="./edit_post.html">수정</a>
-            <a class="delete-btn" href="#" data-open="#post-delete-modal">삭제</a>
+            <a class="delete-btn" id ="delete-post-btn" href="#" data-open="#post-delete-modal">삭제</a>
           </div>
         </div>
       </header>
@@ -123,6 +123,7 @@
                 class="modal-btn modal-btn--cancel"
                 data-action="post-delete-cancel">취소</button>
         <button type="button"
+                id="post-delete-confirm"
                 class="modal-btn modal-btn--confirm"
                 data-action="post-delete-confirm">확인</button>
       </div>
