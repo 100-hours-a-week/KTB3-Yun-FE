@@ -4,13 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('comment-form');
     const commentInput = document.getElementById('comment-input');
     const submitBtn = document.getElementById('comment-submit');
-    const deleteBtn = document.querySelector('.comment-delete');
+    const modal = document.getElementById('comment-delete-modal');
+    const modalCancleBtn = document.querySelector('[data-action="comment-delete-cancel"]');
+    const modalConfirmBtn = document.querySelector('[data-action="comment-delete-confirm"]');
     const commentList = document.getElementById('comment-list');
 
     const params = new URLSearchParams(window.location.search);
     const postId = params.get('postId');
 
     let editingCommentId = null;
+    let deleteCommentId = null;
 
     //수정 모드 전환을 위한 전역 헬퍼
     window.setCommentFormMode = function setCommentFormMode(mode, initialText = ''){
@@ -83,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (res.status === 403) {
                     alert('작성자만 수정 가능합니다.');
+                    location.reload();
                     return;
                 }
             } catch (err) {
@@ -103,7 +107,56 @@ document.addEventListener('DOMContentLoaded', () => {
             window.setCommentFormMode('edit', content.trim());
             return;
         }
+
+        const deleteBtn = event.target.closest('.comment-delete');
+        if (!deleteBtn) return;
+
+        const commentItem = deleteBtn.closest('.comment-item');
+        const id = commentItem?.dataset?.commentId;
+        if (!id || !modal) return;
+
+        deleteCommentId = id;
+        modal.hidden = false;
+        document.body.classList.add('no-scroll');
     })
 
-    window.setCommentFormMode('create');
+    modalCancleBtn.addEventListener('click', closeModal);
+    modal.querySelector('.modal-overlay').addEventListener('click', (event) => {
+        if (event.target === event.currentTarget) closeModal();
+    });
+
+    function closeModal() {
+        if (!modal) return;
+        modal.hidden = true;
+        document.body.classList.remove('no-scroll');
+        deleteCommentId = null;
+    }
+
+    modalConfirmBtn.addEventListener('click', async () => {
+        try {
+            const res = await fetch(`${API_BASE_URL}/posts/${postId}/comments/${deleteCommentId}`, {
+                method: 'DELETE',
+                credentials: 'include',
+            })
+
+            if (res.status === 204) {
+                location.reload();
+                return;
+            }
+
+            if (res.status === 401) {
+                alert('로그인이 필요합니다.');
+                location.replace('./login.html');
+                return;
+            }
+
+            if (res.status === 403) {
+                alert('작성자만 삭제할 수 있습니다.');
+                location.reload();
+                return;
+            }
+        } catch (err) {
+            alert('잠시 후 다시 시도해주세요.');
+        }
+    })
 })
