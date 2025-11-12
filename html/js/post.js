@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function fillCommentItem(item, comment) {
+        item.dataset.commentId = comment.commentId;
         const author = item.querySelector('.comment-author');
         if (author) {
             author.textContent = comment.nickname ?? '';
