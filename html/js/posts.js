@@ -143,9 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', handleLogout);
-    }
+
+    logoutBtn.addEventListener('click', handleLogout);
 
     fetchPosts();
 });

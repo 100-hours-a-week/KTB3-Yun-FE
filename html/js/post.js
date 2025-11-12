@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const postLikes = document.getElementById('post-likes');
     const postViews = document.getElementById('post-views');
     const postCommentsCount = document.getElementById('post-comments-count');
+    const logoutBtn = document.getElementById('logout-btn');
 
     const editLink = document.getElementById('edit-post-link');
 
@@ -84,4 +85,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fetchPostDetail();
+
+    async function handleLogout() {
+        try {
+            const res = await fetch(`${API_BASE_URL}/members/logout`, {
+                method: 'POST',
+                credentials: 'include',
+            });
+
+            if (res.status === 204) {
+                location.assign('./login.html');
+                return;
+            }
+
+            alert('로그아웃에 실패했습니다. 잠시 후 다시 시도해주세요.');
+        } catch (error) {
+            alert('네트워크 오류가 발생했습니다. 다시 시도해주세요.');
+        }
+    }
+
+    logoutBtn.addEventListener('click', handleLogout);
 });
