@@ -10,7 +10,7 @@
 
     /* 버튼/상태 색 */
     --purple: #ACA0EB;   /* 기본 보라 */
-    --purple-strong: #7F6AAE; /* 활성(강조) */
+    --purple-strong: #7F6AEE; /* 활성(강조) */
     --gray-btn: #D9D9D9; /* 비활성 회색 */
     --black: #000;
     --danger: #E74C3C
@@ -286,7 +286,11 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
     transition: background 0.2s;
 }
 
-.submit-btn:hover {
+.submit-btn:disabled {
+    cursor: not-allowed;
+}
+
+.submit-btn:enabled {
     background: var(--purple-strong);
 }
 

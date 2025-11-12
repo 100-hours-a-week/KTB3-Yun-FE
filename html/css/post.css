@@ -294,35 +294,63 @@ button { font: inherit; cursor: pointer; background: none; border: none; }
 .comment-edit:hover, .comment-delete:hover { background: #fafafa; }
 
 /* ============== Modals ============== */
-/* 오버레이: 검은 배경 50% (요구사항) */
-.modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-    z-index: 1000;
-}
-
-/* 모달 본체 */
 .modal {
-    position: fixed; inset: 0; z-index: 1001;
-    display: grid; place-items: center;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
 }
-.modal__panel {
-    width: min(380px, calc(100% - 32px));
-    background: #fff; border-radius: 14px; padding: 20px 18px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+.modal:not([hidden]) {
+    display: block;
 }
-.modal__title { margin: 0 0 8px; font-size: 20px; font-weight: 800; text-align: center; }
-.modal__desc { margin: 0 0 16px; color: var(--muted); text-align: center; }
-.modal__actions { display: flex; gap: 12px; justify-content: center; }
-.modal__btn {
-    min-width: 120px; padding: 10px 14px; border-radius: 10px;
-    color: #fff; border: none;
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.modal__btn--cancel { background: #222; }
-.modal__btn--confirm { background: var(--purple); }
-.modal__btn--confirm:active { background: var(--purple-strong); }
-
-/* 모달 떠있을 때 바닥 스크롤 금지 (body에 .no-scroll 추가해서 사용) */
-.no-scroll { overflow: hidden; }
+.modal-content {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    min-width: 320px;
+    max-width: 90vw;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+.modal-title {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--ink);
+}
+.modal-desc {
+    margin: 0 0 20px;
+    font-size: 14px;
+    color: var(--ink);
+    text-align: center;
+}
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+.modal-btn {
+    min-width: 120px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+}
+.modal-btn--cancel { background: #222; }
+.modal-btn--confirm { background: var(--purple); }
+.modal-btn--confirm:active { background: var(--purple-strong); }
 
 /* ============== Utilities ============== */
 .mt-16 { margin-top: 16px !important; }

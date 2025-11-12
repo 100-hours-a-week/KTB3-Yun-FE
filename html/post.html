@@ -39,8 +39,8 @@
             <time id="post-date" class="post-date">2021-01-01 00:00:00</time>
           </div>
           <div class="post-buttons">
-            <a class="edit-btn" href="./edit_post.html">수정</a>
-            <a class="delete-btn" data-open="#post-delete-modal">삭제</a>
+            <a class="edit-btn" id="edit-post-link" href="./edit_post.html">수정</a>
+            <a class="delete-btn" href="#" data-open="#post-delete-modal">삭제</a>
           </div>
         </div>
       </header>
@@ -106,10 +106,6 @@
     </article>
   </main>
 
-  
-<!-- ===== 공통 오버레이(모달 바깥 클릭 닫기 용) ===== -->
-<div class="modal-overlay" data-action="modal-overlay" hidden></div>
-
 <!-- ===== 게시글 삭제 모달 ===== -->
 <section id="post-delete-modal"
          class="modal"
@@ -118,16 +114,18 @@
          aria-labelledby="post-delete-title"
          aria-describedby="post-delete-desc"
          hidden>
-  <div class="modal__panel">
-    <h3 id="post-delete-title" class="modal__title">게시글을 삭제하시겠습니까?</h3>
-    <p id="post-delete-desc" class="modal__desc">삭제한 내용은 복구 할 수 없습니다.</p>
-    <div class="modal__actions">
-      <button type="button"
-              class="modal__btn modal__btn--cancel"
-              data-action="post-delete-cancel">취소</button>
-      <button type="button"
-              class="modal__btn modal__btn--confirm"
-              data-action="post-delete-confirm">확인</button>
+  <div class="modal-overlay" data-action="modal-overlay">
+    <div class="modal-content">
+      <h3 id="post-delete-title" class="modal-title">게시글을 삭제하시겠습니까?</h3>
+      <p id="post-delete-desc" class="modal-desc">삭제한 내용은 복구 할 수 없습니다.</p>
+      <div class="modal-actions">
+        <button type="button"
+                class="modal-btn modal-btn--cancel"
+                data-action="post-delete-cancel">취소</button>
+        <button type="button"
+                class="modal-btn modal-btn--confirm"
+                data-action="post-delete-confirm">확인</button>
+      </div>
     </div>
   </div>
 </section>
@@ -140,16 +138,18 @@
          aria-labelledby="comment-delete-title"
          aria-describedby="comment-delete-desc"
          hidden>
-  <div class="modal__panel">
-    <h3 id="comment-delete-title" class="modal__title">댓글을 삭제하시겠습니까?</h3>
-    <p id="comment-delete-desc" class="modal__desc">삭제한 내용은 복구 할 수 없습니다.</p>
-    <div class="modal__actions">
-      <button type="button"
-              class="modal__btn modal__btn--cancel"
-              data-action="comment-delete-cancel">취소</button>
-      <button type="button"
-              class="modal__btn modal__btn--confirm"
-              data-action="comment-delete-confirm">확인</button>
+  <div class="modal-overlay" data-action="modal-overlay">
+    <div class="modal-content">
+      <h3 id="comment-delete-title" class="modal-title">댓글을 삭제하시겠습니까?</h3>
+      <p id="comment-delete-desc" class="modal-desc">삭제한 내용은 복구 할 수 없습니다.</p>
+      <div class="modal-actions">
+        <button type="button"
+                class="modal-btn modal-btn--cancel"
+                data-action="comment-delete-cancel">취소</button>
+        <button type="button"
+                class="modal-btn modal-btn--confirm"
+                data-action="comment-delete-confirm">확인</button>
+      </div>
     </div>
   </div>
 </section>

@@ -39,12 +39,11 @@
             type="text" 
             id="post-title" 
             name="title" 
-            value="제목 1" 
+            maxlength="26"
             required
           />
         </div>
           <hr class="divider">
-          <span class="helper-text">* helper text</span>
           <!-- 내용 입력 -->
         <div class="form-field">
           <label for="post-content">내용*</label>
@@ -54,10 +53,10 @@
             name="content" 
             rows="10" 
             required
-          > 수정!! 여기서 수정해 </textarea>
+          ></textarea>
         </div>
           <hr class="divider">
-          <span class="helper-text">* helper text</span>
+          <span class="helper-text"></span>
           <!-- 이미지 업로드 -->
         <div class="form-field">
           <label for="post-image">이미지</label>
@@ -85,11 +84,13 @@
 
         <!-- 수정하기 버튼 -->
         <div class="form-actions">
-          <a type="submit" class="submit-btn" href="./post.html">수정하기</a>
+          <!-- disabled는 <a>에는 안 먹힘 -->
+          <button type="submit" class="submit-btn" href="./post.html" disabled>수정하기</button>
         </div>
       </form>
     </section>
   </main>
+  <script src="./js/edit_post.js" defer></script>
 </body>
 </html>
 
