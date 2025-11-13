@@ -88,8 +88,8 @@ footer.site-footer {
   position: absolute;
   inset: 1px;
   border-radius: 23px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.05));
-  opacity: 0.45;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.05));
+  opacity: 0.75;
   pointer-events: none;
 }
 .login-card__header {
