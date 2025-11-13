@@ -1,130 +1,194 @@
-/* 기본 설정 */
+:root {
+  --bg-dark: #DCC7A1;
+  --bg-panel: #1C2A3A;
+  --accent: #8A9B6E;
+  --accent-weak: rgba(249, 175, 60, 0.2);
+  --ink: #e7e4e1;
+  --muted: #9da5b4;
+  --line: rgba(255, 255, 255, 0.08);
+  --font-body: 'Pretendard', sans-serif;
+  --font-serif: 'Pretendard', sans-serif;
+  --helper: #ff3838;
+}
+
 body {
   margin: 0;
-  font-family: 'Pretendard', sans-serif, 'Sandoll GoGoRound';
-  background-color: #f4f5f7;
-  color: #333;
-}
-
-header.site-header{
-  border-bottom: 1px solid #000000;
-  height: 104px;        
+  min-height: 100vh;
+  font-family: var(--font-body);
+  background: radial-gradient(circle at 20% 20%, rgba(249, 175, 60, 0.15), transparent 45%),
+              radial-gradient(circle at 80% 0%, rgba(90, 145, 255, 0.18), transparent 35%),
+              var(--bg-dark);
+  color: var(--ink);
   display: flex;
-  align-items: center;            
-  justify-content: center;  
-  padding: 0 16px;     
+  flex-direction: column;
 }
 
-.site-header h1{
-  font-size: 32px;
-  font-weight: 400;
-  color: #000000;
-}
-
-/* 전체 영역 가운데 정렬 */
-main {
-  display: flex;
-  justify-content: center;
+.login-layout {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 48px 32px 32px;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
   align-items: center;
-  height: 80vh;
+  align-content: center;
 }
 
-/* 로그인 섹션 */
-#login-section {
-  background: transparent;
-  padding: 0;
-  width: 350px;
+.brand-panel {
+  align-self: center;
+  background: var(--bg);
+  padding: 80px;
+  margin-top: 32px;
 }
-
-/* 제목 */
-#login-section h2 {
+.brand-panel h1 {
+  margin: 0 0 20px;
+  font-size: 42px;
+  line-height: 1.2;
+  font-family: var(--font-serif);
+}
+.brand-panel h1 span {
+  color: var(--accent);
+}
+.brand-panel .description {
+  margin: 0 0 24px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+footer.site-footer {
+  padding: 22px 24px 24px;
   text-align: center;
-  font-weight: 700;
-  font-size: 32px;
-  margin-bottom: 50px;
+  color: var(--muted);
+}
+.site-footer .quote-text {
+  margin: 0;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--ink);
+}
+.site-footer .quote-author {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--muted);
 }
 
-/* 폼 필드 */
+.login-card {
+  position: relative;
+  border-radius: 24px;
+  background: rgba(15, 18, 25, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  padding: 40px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(35px) saturate(170%);
+  align-self: center;
+  overflow: hidden;
+}
+.login-card::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: 23px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.05));
+  opacity: 0.45;
+  pointer-events: none;
+}
+.login-card__header {
+  margin-bottom: 28px;
+}
+.login-card__header h2 {
+  margin: 0;
+  font-size: 28px;
+  color: var(--ink);
+}
+
 .form-field {
   display: flex;
   flex-direction: column;
-  margin-bottom: 3px;
+  gap: 6px;
+  margin-bottom: 18px;
 }
-
-
-label {
-  font-weight: 700;
-  font-size: 15px;
-  margin-bottom: 8px;
-}
-
-input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
+.form-field label {
   font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.form-field input {
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--ink);
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-input:focus {
-  border-color: #7F6AEE;
-  box-shadow: 0 0 3px rgba(127,106,238,0.4);
+.form-field input:valid,
+.form-field input:-webkit-autofill,
+.form-field input:-webkit-autofill:focus,
+.form-field input:-webkit-autofill:hover {
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.05) inset;
+  -webkit-text-fill-color: var(--ink);
+  transition: background 5000s ease-in-out 0s;
 }
 
-/* 헬퍼 텍스트 (에러 메시지 자리) */
+.form-field input::placeholder {
+  color: rgba(231, 230, 225, 0.45);
+}
+.form-field input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-weak);
+  outline: none;
+}
+
 .helper-text {
+  min-height: 14px;
+  margin: 0;
   font-size: 12px;
-  color: #e74c3c;
-  height: 16px; /* 공간 유지 */
-  margin-top: 5px;
+  color: var(--helper);
 }
 
-/* 버튼 */
 #login-btn {
   width: 100%;
-  padding: 12px;
-  background-color: #ACA0EB; /* 비활성 색상 */
-  color: white;
-  font-weight: 600;
+  padding: 14px;
+  border-radius: 16px;
   border: none;
-  border-radius: 6px;
+  background: linear-gradient(120deg, #8a9b6e, #6c7d51);
+  color: #080b11;
+  font-weight: 700;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: transform 0.1s, opacity 0.2s;
 }
-
-#login-btn:active{ transform: translateY(1px);}
-
-#login-btn:disabled{
-  background: #ACA0EB;
+#login-btn:disabled {
+  background: #8a9b6e;
+  color: rgba(8, 11, 17, 0.6);
   cursor: not-allowed;
-  filter: saturate(.9);
+  opacity: 0.7;
 }
-
-#login-btn:enabled{
-    background-color: #7F6AEE;
+#login-btn:enabled:active {
+  transform: translateY(1px);
 }
 
 #signup-link {
-  display: block;
-  width: max-content;
-  margin: 15px auto 0; 
-  padding: 6px 12px;
-  border: none;
-  text-decoration: none;
-  color: #000000;
-  font-weight: 500;
+  display: inline-flex;
+  justify-self: center;
+  gap: 6px;
+  margin-top: 20px;
   font-size: 14px;
+  color: var(--ink);
+  text-decoration: none;
 }
 
-/* #signup-link:hover {
-  background: #7F6AEE;
-  color: #fff;
-} */
-
-/* 헤더/푸터 */
-header, footer {
-  text-align: center;
-  padding: 15px 0;
-  color: #555;
-  font-size: 14px;
+@media (max-width: 960px) {
+  .login-layout {
+    grid-template-columns: 1fr;
+    padding: 32px 20px 48px;
+  }
+  .brand-panel {
+    order: 1;
+  }
+  .login-card {
+    order: 2;
+  }
 }

@@ -3,17 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>로그인 | 아무 말 대잔치</title>
+  <title>로그인 | iLGum</title>
   <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
-  <header class="site-header">
-    <h1>아무 말 대잔치</h1>
-  </header>
 
-  <main>
-    <section id="login-section" aria-labelledby="login-heading">
-      <h2 id="login-heading">로그인</h2>
+  <main class="login-layout">
+    <section class="brand-panel">
+      <h1>당신의 <span>읽음</span>이<br> 당신의 세상을<span> iLGum</span></h1>
+    </section>
+
+    <section id="login-section" class="login-card" aria-labelledby="login-heading">
+      <div class="login-card__header">
+        <h2 id="login-heading">로그인</h2>
+      </div>
 
       <form id="login-form" method="post" novalidate>
         <div class="form-field">
@@ -22,7 +25,7 @@
             type="email"
             id="email"
             name="email"
-            placeholder="이메일을 입력하세요"
+            placeholder="example@ilgum.com"
             required
             autocomplete="email"
             aria-describedby="email-helper"
@@ -52,6 +55,10 @@
       </p>
     </section>
   </main>
+  <footer class="site-footer">
+    <p class="quote-text">Reading is the seed of knowledge.</p>
+    <p class="quote-author">(Melvil Dewey, 1851-1931)</p>
+  </footer>
 <script src="./js/login.js" defer></script>
 </body>
 </html>
