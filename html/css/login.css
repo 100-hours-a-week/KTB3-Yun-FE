@@ -78,6 +78,7 @@ footer.site-footer {
   background: rgba(15, 18, 25, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.28);
   padding: 40px;
+  margin-top: 32px;
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(35px) saturate(170%);
   align-self: center;
@@ -95,11 +96,11 @@ footer.site-footer {
 .login-card__header {
   margin-bottom: 28px;
 }
-.login-card__header h2 {
+/* .login-card__header h2 {
   margin: 0;
   font-size: 28px;
   color: var(--ink);
-}
+} */
 
 .form-field {
   display: flex;
