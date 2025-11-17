@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>iLGum Feed</title>
+  <title>피드 | iLGum</title>
   <link rel="stylesheet" href="./css/posts.css" />
 </head>
 <body>
@@ -25,10 +25,19 @@
 
   <main id="main" class="container" role="main">
     <section class="intro">
-      <p class="greeting">
-        남기고 싶은 문장을 <strong>iLGum</strong>에 기록해 보세요.
-      </p>
-      <a class="compose-btn" href="./make_post.html" aria-label="새 기록 남기기">+ 새 기록 남기기</a>
+      <div class="intro-left">
+        <p class="greeting">
+          당신이 캐낸 문장을 <strong>iLGum</strong>에 심어 보세요.
+        </p>
+        <div class="category-filter" role="group" aria-label="장르 선택">
+          <button type="button" class="category-btn is-active" data-genre="all">전체</button>
+          <button type="button" class="category-btn" data-genre="poem">시/소설</button>
+          <button type="button" class="category-btn" data-genre="essay">에세이</button>
+          <button type="button" class="category-btn" data-genre="self">자기계발</button>
+          <button type="button" class="category-btn" data-genre="etc">기타</button>
+        </div>
+      </div>
+      <a class="compose-btn" href="./make_post.html" aria-label="새 기록 남기기">+ 새 문장 심기</a>
     </section>
 
     <section id="post-list" class="post-list" aria-label="게시글 목록">
