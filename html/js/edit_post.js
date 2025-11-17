@@ -5,6 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const postImageInput = document.getElementById('post-image');
     const contentHelper = document.querySelector('.helper-text');
     const submitBtn = document.querySelector('.submit-btn');
+    const readStartInput = document.getElementById('read-start-date');
+    const readEndInput = document.getElementById('read-end-date');
+    const currentBookTitle = document.getElementById('current-book-title');
+    const currentBookMeta = document.getElementById('current-book-meta');
+    const currentBookPeriod = document.getElementById('current-book-period');
+    const currentBookCover = document.getElementById('current-book-cover');
+    const fileNameDisplay = document.getElementById('file-name-display');
     const logoutBtn = document.getElementById('logout-btn');
 
     const params = new URLSearchParams(window.location.search);
@@ -29,7 +36,39 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = body?.data ?? body;
         titleInput.value = data.title;
         contentInput.value = data.content;
-        postImageInput.value = data.postImage ?? '';
+        postImageInput.value = '';
+
+        if (fileNameDisplay) {
+            fileNameDisplay.textContent = data.postImage ?? '파일을 선택해주세요';
+        }
+
+        if (readStartInput) {
+            readStartInput.value = data.readStartDate ?? readStartInput.value;
+        }
+        if (readEndInput) {
+            readEndInput.value = data.readEndDate ?? readEndInput.value;
+        }
+
+        const hasBook = Boolean(data.bookTitle || data.bookAuthor || data.bookGenre || data.bookImage);
+
+        if (hasBook && currentBookTitle) {
+            currentBookTitle.textContent = data.bookTitle ?? currentBookTitle.textContent;
+        }
+        if (hasBook && currentBookMeta) {
+            const meta = [data.bookAuthor, data.bookGenre].filter(Boolean).join(' · ');
+            currentBookMeta.textContent = meta || currentBookMeta.textContent;
+        }
+        if (hasBook && currentBookCover) {
+            if (data.bookImage) {
+                currentBookCover.src = data.bookImage;
+            }
+            currentBookCover.hidden = false;
+        }
+        if (hasBook && currentBookPeriod) {
+            if (data.readStartDate || data.readEndDate) {
+                currentBookPeriod.textContent = `${data.readStartDate ?? '?'} ~ ${data.readEndDate ?? '?'}`;
+            }
+        }
     })
     .catch((err) => {
         alert('게시글 정보를 불러오는 중 문제가 발생했습니다.');
