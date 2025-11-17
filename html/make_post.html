@@ -1,96 +1,115 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>게시글 작성 - 아무 말 대잔치</title>
-  <link rel="stylesheet" href="./css/make_post.css"/>
+  <title>새 문장 남기기 | iLGum</title>
+  <link rel="stylesheet" href="./css/make_post.css" />
 </head>
 <body>
-  <!-- 상단 바 -->
-  <header class="site-header" role="banner">
-      <div class="site-header__inner">
-          <a href="./posts.html" class="back-link">‹</a>
-          <h1 class="site-title">아무 말 대잔치</h1>
-          <details class="profile-dropdown">
-              <summary class="profile-button" aria-label="내 프로필">
-                  <span class="profile-avatar" aria-hidden="true"></span>
-              </summary>
-              <ul class="profile-dropdown-menu">
-                  <li><a href="./edit_profile.html">회원정보수정</a></li>
-                  <li><a href="./edit_password.html">비밀번호변경</a></li>
-                  <li><button id="logout-btn" type="button" class="logout-link">로그아웃</button></li>
-              </ul>
-          </details>
+  <main class="make-post-layout">
+    <section class="book-search-card" aria-labelledby="book-search-heading">
+      <div class="book-search-card__header">
+        <h2 id="book-search-heading">책 검색</h2>
+        <p>어떤 책을 읽으셨나요?</p>
       </div>
-  </header>
+      <div class="book-search-placeholder">
+        <button type="button" class="search-btn" data-open="#book-search-modal">+ 책 검색하기</button>
+      </div>
+      <div class="read-period">
+        <p class="read-period__label">독서 기간</p>
+        <div class="read-period__dates">
+          <label>
+            시작일
+            <input type="date" id="read-start-date" name="readStart" />
+          </label>
+          <label>
+            종료일
+            <input type="date" id="read-end-date" name="readEnd" />
+          </label>
+        </div>
+      </div>
+    </section>
 
-  <!-- 본문 -->
-  <main class="container">
-    <section class="make-post">
-      <h2 class="make-post-title">게시글 작성</h2>
+    <section class="make-post-card" aria-labelledby="make-post-heading">
+      <div class="make-post-card__header">
+        <h2 id="make-post-heading">새 문장 남기기</h2>
+      </div>
 
-      <form class="make-post-form" id="make-post-form">
-        <!-- 제목 입력 -->
+      <form id="make-post-form" novalidate>
         <div class="form-field">
-          <label for="post-title">제목*</label>
-            <hr class="divider">
-            <input
-            type="text" 
-            id="post-title" 
+          <label for="post-title">제목 *</label>
+          <input
+            type="text"
+            id="post-title"
             name="title"
             maxlength="26"
-            placeholder="제목을 입력해주세요. (최대 26글자)"
+            placeholder="제목을 입력해주세요 (최대 26글자)"
             required
           />
         </div>
-          <hr class="divider">
-          <!-- 내용 입력 -->
+
         <div class="form-field">
-          <label for="post-content">내용*</label>
-            <hr class="divider">
-            <textarea
-            id="post-content" 
-            name="content" 
-            rows="10"
-            placeholder="내용을 입력해주세요."
+          <label for="post-content">내용 *</label>
+          <textarea
+            id="post-content"
+            name="content"
+            rows="8"
+            placeholder="당신의 감상을 자유롭게 적어주세요!"
             required
           ></textarea>
-        </div>
-          <hr class="divider">
-          <span class="helper-text"></span>
-          <!-- 이미지 업로드 -->
-        <div class="form-field">
-          <label for="post-image">이미지</label>
-          <div class="image-upload-wrapper">
-            <div class="image-upload-controls">
-              <label for="post-image" class="file-select-btn">파일 선택</label>
-              <input 
-                type="text" 
-                id="file-name-display" 
-                class="file-name-display" 
-                placeholder="파일을 선택해주세요."
-                readonly
-              />
-              <input 
-                type="file" 
-                id="post-image" 
-                name="image" 
-                accept="image/*" 
-                class="file-input-hidden"
-                aria-label="이미지 파일 선택"
-              />
-            </div>
-          </div>
+          <p class="helper-text"></p>
         </div>
 
-        <!--완료 버튼 -->
-        <div class="form-actions">
-          <button type="submit" class="submit-btn" disabled>완료</button>
+        <div class="form-field">
+          <label for="post-image">이미지</label>
+          <label class="image-upload" for="post-image">
+            <span class="file-name" id="file-name-display">파일을 선택해주세요</span>
+            <input type="file" id="post-image" name="image" accept="image/*" />
+          </label>
         </div>
+
+        <button type="submit" id="submit-btn" class="submit-btn" disabled>완료</button>
+        <a href="./posts.html" class="alt-link">목록으로 돌아가기</a>
       </form>
     </section>
   </main>
   <script src="./js/make_post.js" defer></script>
 </body>
 </html>
+  <section id="book-search-modal"
+           class="modal"
+           role="dialog"
+           aria-modal="true"
+           aria-labelledby="book-search-modal-title"
+           hidden>
+    <div class="modal-overlay" data-action="modal-overlay">
+      <div class="modal-content">
+        <h3 id="book-search-modal-title" class="modal-title">도서 검색 후 선택해주세요</h3>
+        <div class="search-input-field">
+          <input type="text" id="book-search-input" placeholder="책 제목이나 작가명을 입력하세요" />
+        </div>
+        <div class="search-results" id="book-search-results" aria-live="polite">
+          <ul>
+            <li>
+              <img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788998441012.jpg" alt="책 표지" class="result-cover" />
+              <div class="result-body">
+                <strong>모순</strong>
+                <span>양귀자 · 국내 소설</span>
+              </div>
+            </li>
+            <li>
+              <img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788998441005.jpg" alt="책 표지" class="result-cover" />
+              <div class="result-body">
+                <strong>원미동 사람들</strong>
+                <span>양귀자 · 국내 소설</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="modal-btn modal-btn--cancel" data-action="book-search-cancel">닫기</button>
+        </div>
+      </div>
+    </div>
+  </section>

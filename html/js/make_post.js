@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentHelper = document.querySelector('.helper-text');
     const submitBtn = document.querySelector('.submit-btn');
     const logoutBtn = document.getElementById('logout-btn');
+    const searchModal = document.getElementById('book-search-modal');
+    const searchBtn = document.querySelector('[data-open="#book-search-modal"]');
+    const modalOverlay = searchModal?.querySelector('.modal-overlay');
+    const modalCloseBtn = searchModal?.querySelector('.modal-btn--cancel');
 
     const API_BASE_URL = 'http://127.0.0.1:8080';
 
@@ -56,6 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     form.addEventListener('submit', handleSubmit);
+    searchBtn?.addEventListener('click', () => searchModal?.removeAttribute('hidden'));
+    modalOverlay?.addEventListener('click', (event) => {
+        if (event.target.dataset.action === 'modal-overlay') {
+            searchModal?.setAttribute('hidden', '');
+        }
+    });
+    modalCloseBtn?.addEventListener('click', () => searchModal?.setAttribute('hidden', ''));
 
     function isValidPost(title, content){
         const t = title.trim();
