@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('#edit-profile-form');
+    const submitBtn = document.querySelector('#profile-submit');
     const profileImageInput = document.querySelector('#profile-picture-input');
     const emailInput = document.querySelector('#email');
     const nicknameInput = document.querySelector('#nickname');
@@ -7,11 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const toast = document.querySelector('#edit-toast');
     const modalConfirmBtn = document.querySelector('.modal-btn.modal-btn--confirm');
     const logoutBtn = document.getElementById('logout-btn');
+    const withdrawBtn = document.querySelector('.withdraw-btn');
+    const withdrawModal = document.getElementById('withdraw-modal');
+    const modalOverlay = withdrawModal?.querySelector('.modal-overlay');
+    const modalCancelBtn = withdrawModal?.querySelector('.modal-btn--cancel');
+    const fileNameDisplay = document.getElementById('file-name-display');
 
     const API_BASE_URL = 'http://127.0.0.1:8080';
 
     let memberId = null;
     let toastTimer = null;
+    let initialNickname = '';
+    let initialProfileImage = '';
 
     //로그인 한 사용자 정보 받아오기
     fetch(`${API_BASE_URL}/members/me`, {
@@ -30,10 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (nicknameInput && data.nickname) {
                 nicknameInput.value = data.nickname;
+                initialNickname = data.nickname;
             }
-            if (profileImageInput && data.profileImage) {
-                profileImageInput.value = data.profileImage;
+            initialProfileImage = data.profileImage ?? '';
+            if (fileNameDisplay) {
+                fileNameDisplay.textContent = initialProfileImage || '기존 파일 이름';
             }
+            updateSubmitState();
         })
         .catch((err) => {
             alert(err.message || '회원 정보를 불러오지 못했습니다.');
@@ -59,7 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (res.ok) {
+                initialNickname = nickname;
+                initialProfileImage = profileImage;
                 showToast();
+                updateSubmitState();
                 return;
             }
             
@@ -115,8 +129,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000);
     }
 
+    function updateSubmitState() {
+        const nickname = nicknameInput.value.trim();
+        const profileImage = profileImageInput.value.trim();
+        const nicknameMsg = validateNickname(nickname);
+        nicknameHelper.textContent = nicknameMsg ?? '';
+        const changed = nickname !== initialNickname || profileImage !== initialProfileImage;
+        const isDisabled = Boolean(nicknameMsg) || !changed;
+        if (submitBtn) {
+            submitBtn.disabled = isDisabled;
+        }
+    }
+
+    nicknameInput?.addEventListener('input', () => {
+        updateSubmitState();
+    });
+    profileImageInput?.addEventListener('input', () => {
+        if (fileNameDisplay) {
+            const file = profileImageInput.files?.[0];
+            fileNameDisplay.textContent = file?.name || initialProfileImage || '기존 파일 이름';
+        }
+        updateSubmitState();
+    });
+
     form.addEventListener('submit', handleSubmit);
     modalConfirmBtn.addEventListener('click', handleWithdraw);
+    withdrawBtn?.addEventListener('click', () => withdrawModal?.removeAttribute('hidden'));
+    modalOverlay?.addEventListener('click', (event) => {
+        if (event.target.dataset.action === 'modal-overlay') {
+            withdrawModal?.setAttribute('hidden', '');
+        }
+    });
+    modalCancelBtn?.addEventListener('click', () => withdrawModal?.setAttribute('hidden', ''));
 
     async function handleLogout() {
         try {

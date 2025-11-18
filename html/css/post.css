@@ -515,6 +515,8 @@ button {
   border: none;
   font-weight: 600;
   color: #080b11;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .modal-btn--cancel {
   background: rgba(255, 255, 255, 0.2);
@@ -522,6 +524,14 @@ button {
 }
 .modal-btn--confirm {
   background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+}
+.modal-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+.modal-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 @media (max-width: 640px) {
