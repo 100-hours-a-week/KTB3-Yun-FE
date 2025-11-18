@@ -16,7 +16,7 @@
           <span class="profile-avatar" aria-hidden="true"></span>
         </summary>
         <ul class="profile-dropdown-menu">
-          <li><a href="./edit_profile.html">회원정보수정</a></li>
+          <li><a href="./edit_profile.html">마이페이지</a></li>
           <li><a href="./edit_password.html">비밀번호변경</a></li>
           <li><button id="logout-btn" type="button" class="logout-link">로그아웃</button></li>
         </ul>
@@ -53,6 +53,30 @@
         <button type="submit" id="profile-submit" class="submit-btn" disabled>수정하기</button>
         <button type="button" class="withdraw-btn" data-open="#withdraw-modal">회원 탈퇴</button>
       </form>
+    </section>
+
+    <section class="my-posts-card" aria-labelledby="my-posts-heading">
+      <div class="my-posts-card__header">
+        <h2 id="my-posts-heading">내가 쓴 글</h2>
+        <label class="my-posts-search">
+          <input type="text" placeholder="게시글 검색어를 입력해주세요." aria-label="내가 쓴 글 검색" />
+        </label>
+      </div>
+      <ul class="my-posts-list">
+        <li>
+          <p class="post-title">당신 옆을 스쳐간 그 소녀의 이름은</p>
+          <p class="post-meta">2025.10.18</p>
+        </li>
+        <li>
+          <p class="post-title">모순에 대한 짧은 기록</p>
+          <p class="post-meta">2025.11.09</p>
+        </li>
+        <li>
+          <p class="post-title">읽고 싶은 책 모음</p>
+          <p class="post-meta">2025.11.12</p>
+        </li>
+      </ul>
+      <button type="button" class="view-posts-btn">+ 더 보기</button>
     </section>
   </main>
 
