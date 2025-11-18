@@ -501,7 +501,7 @@ button {
 }
 .modal-desc {
   margin: 0 0 20px;
-  color: var(--muted);
+  color: var(--ink);
 }
 .modal-actions {
   display: flex;
