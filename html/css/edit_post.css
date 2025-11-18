@@ -1,6 +1,7 @@
 :root {
   --bg-dark: #dcc7a1;
   --accent: #8a9b6e;
+  --accent-strong: #6c7d51;
   --accent-weak: rgba(249, 175, 60, 0.25);
   --ink: #e7e4e1;
   --muted: #a8b0c0;
@@ -212,6 +213,10 @@ form {
   font-size: 15px;
   resize: none;
   transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: rgba(231, 230, 225, 0.45);
 }
 .form-field textarea {
   min-height: 150px;
