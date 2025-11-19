@@ -39,12 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (res.ok) {
-                const test = (await res.text()).trim();
-                if (test === 'login_success') {
-                    alert("로그인 성공")
-                    location.assign('./posts.html');
-                    return;
-                }
+                alert("로그인 성공")
+                location.assign('./posts.html');
                 return;
             }
             
