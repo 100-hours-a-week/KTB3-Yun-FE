@@ -1,5 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_BASE_URL = 'http://127.0.0.1:8080';
+    const auth = window.authClient;
+    const API_BASE_URL = auth?.API_BASE_URL ?? 'http://127.0.0.1:8080';
+
+    if (!auth) {
+        console.error('인증 모듈을 불러올 수 없습니다.');
+        location.replace('./login.html');
+        return;
+    }
     const logoutBtn = document.getElementById('logout-btn');
     const postList = document.getElementById('post-list');
     const postTemplate = document.getElementById('post-card-template');
@@ -96,13 +103,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function fetchPosts() {
+        if (!auth.getTokens?.()) {
+            location.replace('./login.html');
+            return;
+        }
+
         try {
-            const res = await fetch(`${API_BASE_URL}/posts`, {
+            const res = await auth.authorizedFetch(`${API_BASE_URL}/posts`, {
                 method: 'GET',
-                credentials: 'include',
             });
 
             if (!res.ok) {
+                if (res.status === 401) {
+                    location.replace('./login.html');
+                    return;
+                }
                 throw new Error('게시글을 불러오지 못했습니다.');
             }
 
@@ -127,12 +142,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function handleLogout() {
         try {
-            const res = await fetch(`${API_BASE_URL}/members/logout`, {
+            const res = await auth.authorizedFetch(`${API_BASE_URL}/members/logout`, {
                 method: 'POST',
-                credentials: 'include',
             });
 
             if (res.status === 204) {
+                auth.clearTokens?.();
                 location.assign('./login.html');
                 return;
             }

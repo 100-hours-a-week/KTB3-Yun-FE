@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_BASE_URL = 'http://127.0.0.1:8080';
+    const auth = window.authClient;
+    const API_BASE_URL = auth?.API_BASE_URL ?? 'http://127.0.0.1:8080';
     const params = new URLSearchParams(window.location.search);
     const postId = params.get('postId');
 
@@ -22,6 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const editLink = document.getElementById('edit-post-link');
     const likeBtn = document.getElementById('post-likes');
     const likeToggle = document.querySelector('.stat-like-toggle');
+
+    if (!auth) {
+        console.error('인증 모듈을 불러올 수 없습니다.');
+        location.replace('./login.html');
+        return;
+    }
 
     if (!postId) {
         alert('게시글 정보를 찾을 수 없습니다.');
@@ -140,10 +147,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function fetchPostDetail() {
+        if (!auth.getTokens?.()) {
+            location.replace('./login.html');
+            return;
+        }
         try {
-            const res = await fetch(`${API_BASE_URL}/posts/${postId}`, {
+            const res = await auth.authorizedFetch(`${API_BASE_URL}/posts/${postId}`, {
                 method: 'GET',
-                credentials: 'include',
             });
 
             if (!res.ok) {
@@ -161,10 +171,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //좋아요 상태 확인
     async function fetchLikeStatus() {
+        if (!auth.getTokens?.()) {
+            location.replace('./login.html');
+            return;
+        }
         try {
-            const res = await fetch(`${API_BASE_URL}/posts/${postId}/likes`, {
+            const res = await auth.authorizedFetch(`${API_BASE_URL}/posts/${postId}/likes`, {
             method: 'GET',
-            credentials: 'include',
             });
             if (res.ok) {
                 const isLiked = await res.json();
@@ -186,9 +199,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isLiked === 'false'){
             try {
-                const res = await fetch(`${API_BASE_URL}/posts/${postId}/likes`, {
+                if (!auth.getTokens?.()) {
+                    location.replace('./login.html');
+                    return;
+                }
+                const res = await auth.authorizedFetch(`${API_BASE_URL}/posts/${postId}/likes`, {
                     method: 'POST',
-                    credentials: 'include',
                 });
 
                 if (res.status === 204) {
@@ -207,9 +223,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } else if (isLiked === 'true') {
             try {
-                const res = await fetch(`${API_BASE_URL}/posts/${postId}/likes`, {
+                if (!auth.getTokens?.()) {
+                    location.replace('./login.html');
+                    return;
+                }
+                const res = await auth.authorizedFetch(`${API_BASE_URL}/posts/${postId}/likes`, {
                     method: 'DELETE',
-                    credentials: 'include',
                 });
 
                 if (res.status === 204) {
@@ -247,11 +266,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     modalConfirmBtn.addEventListener('click', async () => {
+        if (!auth.getTokens?.()) {
+            location.replace('./login.html');
+            return;
+        }
         try {
-            const res = await fetch(`${API_BASE_URL}/posts/${postId}`, {
+            const res = await auth.authorizedFetch(`${API_BASE_URL}/posts/${postId}`, {
                 method: 'DELETE',
                 headers: {'Content-Type': 'application/json'},
-                credentials: 'include',
             });
 
             if (res.status === 204) {
@@ -279,12 +301,12 @@ document.addEventListener('DOMContentLoaded', () => {
     //로그아웃
     async function handleLogout() {
         try {
-            const res = await fetch(`${API_BASE_URL}/members/logout`, {
+            const res = await auth.authorizedFetch(`${API_BASE_URL}/members/logout`, {
                 method: 'POST',
-                credentials: 'include',
             });
 
             if (res.status === 204) {
+                auth.clearTokens?.();
                 location.assign('./login.html');
                 return;
             }

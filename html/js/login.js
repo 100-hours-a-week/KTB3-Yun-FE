@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (res.ok) {
+                const payload = await res.json();
+                window.authClient?.setTokens(payload);
                 alert("로그인 성공")
                 location.assign('./posts.html');
                 return;

@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const auth = window.authClient;
     const form = document.getElementById('edit-post-form');
     const titleInput = document.getElementById('post-title');
     const contentInput = document.getElementById('post-content');
@@ -18,15 +19,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const postId = params.get('postId');
     const backLink = document.querySelector('.back-link');
     
-    const API_BASE_URL = 'http://127.0.0.1:8080';
+    const API_BASE_URL = auth?.API_BASE_URL ?? 'http://127.0.0.1:8080';
+
+    if (!auth) {
+        console.error('인증 모듈을 불러올 수 없습니다.');
+        location.replace('./login.html');
+        return;
+    }
 
     if (postId && backLink) {
         backLink.href = `./post.html?postId=${postId}`;
     }
 
-    fetch(`${API_BASE_URL}/posts/${postId}`, {
+    auth.authorizedFetch(`${API_BASE_URL}/posts/${postId}`, {
         method: 'GET',
-        credentials: 'include',
     })
     .then((res) => {
         if (!res.ok) throw new Error('게시글 정보를 불러오지 못했습니다.');
@@ -94,12 +100,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = titleInput.value.trim();
         const content = contentInput.value.trim();
         const postImage = postImageInput.value.trim();
+        if (!auth.getTokens?.()) {
+            location.replace('./login.html');
+            return;
+        }
 
         try {
-            const res = await fetch(`${API_BASE_URL}/posts/${postId}`, {
+            const res = await auth.authorizedFetch(`${API_BASE_URL}/posts/${postId}`, {
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
-                credentials: 'include',
                 body: JSON.stringify({title, content, postImage}),
             });
 
@@ -138,12 +147,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function handleLogout() {
         try {
-            const res = await fetch(`${API_BASE_URL}/members/logout`, {
+            const res = await auth.authorizedFetch(`${API_BASE_URL}/members/logout`, {
                 method: 'POST',
-                credentials: 'include',
             });
 
             if (res.status === 204) {
+                auth.clearTokens?.();
                 location.assign('./login.html');
                 return;
             }

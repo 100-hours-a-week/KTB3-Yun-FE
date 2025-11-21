@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const auth = window.authClient;
     const form = document.querySelector('#edit-profile-form');
     const submitBtn = document.querySelector('#profile-submit');
     const profileImageInput = document.querySelector('#profile-picture-input');
@@ -14,7 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalCancelBtn = withdrawModal?.querySelector('.modal-btn--cancel');
     const fileNameDisplay = document.getElementById('file-name-display');
 
-    const API_BASE_URL = 'http://127.0.0.1:8080';
+    const API_BASE_URL = auth?.API_BASE_URL ?? 'http://127.0.0.1:8080';
+
+    if (!auth) {
+        console.error('인증 모듈을 불러올 수 없습니다.');
+        location.replace('./login.html');
+        return;
+    }
 
     let memberId = null;
     let toastTimer = null;
@@ -22,9 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let initialProfileImage = '';
 
     //로그인 한 사용자 정보 받아오기
-    fetch(`${API_BASE_URL}/members/me`, {
+    auth.authorizedFetch(`${API_BASE_URL}/members/me`, {
         method: 'GET',
-        credentials: 'include',
     })
         .then((res) => {
             if (!res.ok) throw new Error('유저 정보를 가져올 수 없습니다.');
@@ -62,10 +68,13 @@ document.addEventListener('DOMContentLoaded', () => {
         nicknameHelper.textContent = nicknameMsg;
 
         try {
-            const res = await fetch(`${API_BASE_URL}/members/${memberId}`, {
+            if (!auth.getTokens?.()) {
+                location.replace('./login.html');
+                return;
+            }
+            const res = await auth.authorizedFetch(`${API_BASE_URL}/members/${memberId}`, {
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
-                credentials: 'include',
                 body: JSON.stringify({nickname, profileImage}),
             });
 
@@ -89,10 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         try {
-            const res = await fetch(`${API_BASE_URL}/members/${memberId}`, {
+            if (!auth.getTokens?.()) {
+                location.replace('./login.html');
+                return;
+            }
+            const res = await auth.authorizedFetch(`${API_BASE_URL}/members/${memberId}`, {
                 method: 'DELETE',
                 headers: {'Content-Type': 'application/json'},
-                credentials: 'include',
             });
 
             if (res.status === 204) {
@@ -164,12 +176,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function handleLogout() {
         try {
-            const res = await fetch(`${API_BASE_URL}/members/logout`, {
+            const res = await auth.authorizedFetch(`${API_BASE_URL}/members/logout`, {
                 method: 'POST',
-                credentials: 'include',
             });
 
             if (res.status === 204) {
+                auth.clearTokens?.();
                 location.assign('./login.html');
                 return;
             }

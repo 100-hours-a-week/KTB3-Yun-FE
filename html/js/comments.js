@@ -1,5 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_BASE_URL = 'http://127.0.0.1:8080';
+    const auth = window.authClient;
+    const API_BASE_URL = auth?.API_BASE_URL ?? 'http://127.0.0.1:8080';
+
+    if (!auth) {
+        console.error('인증 모듈을 불러올 수 없습니다.');
+        location.replace('./login.html');
+        return;
+    }
 
     const form = document.getElementById('comment-form');
     const commentInput = document.getElementById('comment-input');
@@ -41,13 +48,16 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         const content = commentInput.value.trim();
+        if (!auth.getTokens?.()) {
+            location.replace('./login.html');
+            return;
+        }
 
         if (!editingCommentId) {
             try { //댓글 작성
-                const res = await fetch(`${API_BASE_URL}/posts/${postId}/comments`, {
+                const res = await auth.authorizedFetch(`${API_BASE_URL}/posts/${postId}/comments`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    credentials: 'include',
                     body: JSON.stringify({content}),
                 })
 
@@ -66,10 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } else {
             try { //댓글 수정
-                const res = await fetch(`${API_BASE_URL}/posts/${postId}/comments/${editingCommentId}`, {
+                const res = await auth.authorizedFetch(`${API_BASE_URL}/posts/${postId}/comments/${editingCommentId}`, {
                     method: 'PUT',
                     headers: {'Content-Type': 'application/json'},
-                    credentials: 'include',
                     body: JSON.stringify({content}),
                 })
 
@@ -133,10 +142,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     modalConfirmBtn.addEventListener('click', async () => {
+        if (!auth.getTokens?.()) {
+            location.replace('./login.html');
+            return;
+        }
         try {
-            const res = await fetch(`${API_BASE_URL}/posts/${postId}/comments/${deleteCommentId}`, {
+            const res = await auth.authorizedFetch(`${API_BASE_URL}/posts/${postId}/comments/${deleteCommentId}`, {
                 method: 'DELETE',
-                credentials: 'include',
             })
 
             if (res.status === 204) {

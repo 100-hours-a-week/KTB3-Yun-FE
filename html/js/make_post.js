@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const auth = window.authClient;
     const form = document.querySelector('#make-post-form');
     const titleInput = document.querySelector('#post-title');
     const contentInput = document.querySelector('#post-content');
@@ -11,7 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalOverlay = searchModal?.querySelector('.modal-overlay');
     const modalCloseBtn = searchModal?.querySelector('.modal-btn--cancel');
 
-    const API_BASE_URL = 'http://127.0.0.1:8080';
+    const API_BASE_URL = auth?.API_BASE_URL ?? 'http://127.0.0.1:8080';
+
+    if (!auth) {
+        console.error('인증 모듈을 불러올 수 없습니다.');
+        location.replace('./login.html');
+        return;
+    }
 
     titleInput.addEventListener('input', handleInput);
     contentInput.addEventListener('input', handleInput);
@@ -32,12 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = titleInput.value.trim();
         const content = contentInput.value.trim();
         const postImage = postImageInput.value.trim();
+        if (!auth.getTokens?.()) {
+            location.replace('./login.html');
+            return;
+        }
 
         try {
-            const res = await fetch(`${API_BASE_URL}/posts`, {
+            const res = await auth.authorizedFetch(`${API_BASE_URL}/posts`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                credentials: "include",
                 body: JSON.stringify({title, content, postImage}),
             });
 
@@ -82,12 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function handleLogout() {
         try {
-            const res = await fetch(`${API_BASE_URL}/members/logout`, {
+            const res = await auth.authorizedFetch(`${API_BASE_URL}/members/logout`, {
                 method: 'POST',
-                credentials: 'include',
             });
 
             if (res.status === 204) {
+                auth.clearTokens?.();
                 location.assign('./login.html');
                 return;
             }
