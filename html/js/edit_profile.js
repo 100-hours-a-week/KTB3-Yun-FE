@@ -109,12 +109,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (res.status === 204) {
                 alert('탈퇴 성공');
+                auth.clearTokens?.();
                 location.replace('./login.html');
                 return;
             }
 
             if (res.status === 401) {
                 alert('로그인이 필요합니다.');
+                auth.clearTokens?.();
                 location.replace('./login.html');
             }
         } catch (err) {

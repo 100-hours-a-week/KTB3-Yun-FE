@@ -103,6 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (res.status === 422) {
                 passwordHelper.textContent = '*이미 사용 중인 비밀번호입니다.';
             }
+            if (res.status === 401) {
+                auth.clearTokens?.();
+                location.replace('./login.html');
+            }
         } catch(err) {
             alert('잠시 후 다시 시도해주세요.');
         }
@@ -114,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(toastTimer);
         toastTimer = setTimeout(() => {
             toast.hidden = true;
+            auth.clearTokens?.();
             location.replace('./login.html');
         }, 2000);
     }
